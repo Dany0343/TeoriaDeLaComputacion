@@ -15,6 +15,12 @@ contador = 0
 contadorUnos = 0
 #Funciones
 
+def calcularLongitud(s):
+    counter = 0
+    for i in s:
+        counter+=1
+    return counter
+
 def binarios(opcion): 
     #cadenas = ['{', 'ε']
     global contador
@@ -25,21 +31,24 @@ def binarios(opcion):
         for j in range(0, 2 ** i): #Recorrer y generar la cadena desde 0 hasta el numero especificado
             #Conversion a binario
             aux = str(bin(j))[2:]
-            tam = len(aux)
+            lenAux = calcularLongitud(aux)
+            tam = lenAux
             if tam < i: 
                 #modo manual
                 #zeros = '0' * i
                 #aux = zeros + aux
                 #Modo con función
                 aux = aux.zfill(i)
-                contador = contador + len(aux)
+                lenAux = calcularLongitud(aux)
+                contador = contador + lenAux
                 contadorUnos += aux.count('1')
                 f.writelines(aux + ",")
                 #cadenas.append(aux) esto es usando una lista (mucha memoria)
             else: 
                 f.writelines(aux + ",")
                 contadorUnos +=  aux.count('1')
-                contador = contador + len(aux)
+                lenAux = calcularLongitud(aux)
+                contador = contador + lenAux
                 #cadenas.append(aux)
         nsimbolos.append(contador)
         unos.append(contadorUnos)
