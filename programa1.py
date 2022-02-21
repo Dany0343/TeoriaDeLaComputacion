@@ -1,5 +1,5 @@
 #Variables
-from random import randint, random
+from random import randint
 from timeit import default_timer
 import matplotlib.pyplot as plt
 import math
@@ -21,37 +21,35 @@ def binarios(opcion):
     global contadorUnos
     f = open("Programa1.txt", "w", encoding="utf-8")
     f.write('Σ^* = ' + '{' + 'ε' + ',' + "\n")
-    if opcion > 0 and opcion < 1000: 
-        for i in range(1, opcion + 1):
-            for j in range(0, 2 ** i): #Recorrer y generar la cadena desde 0 hasta el numero especificado
-                #Conversion a binario
-                aux = str(bin(j))[2:]
-                tam = len(aux)
-                if tam < i: 
-                    #modo manual
-                    #zeros = '0' * i
-                    #aux = zeros + aux
-                    #function mode
-                    aux = aux.zfill(i)
-                    contador = contador + len(aux)
-                    contadorUnos += aux.count('1')
-                    f.writelines(aux + ",")
-                    #cadenas.append(aux) esto es usando una lista (mucha memoria)
-                else: 
-                    f.writelines(aux + ",")
-                    contadorUnos +=  aux.count('1')
-                    contador = contador + len(aux)
-                    #cadenas.append(aux)
-            nsimbolos.append(contador)
-            unos.append(contadorUnos)
-            contador = 0
-            contadorUnos = 0
-            f.write("\n\n")
-        #cadenas.append('}')
-        f.write('}')
-        f.close()
-    else: 
-        print("El numero está fuera del rango\n\n")
+    for i in range(1, opcion + 1):
+        for j in range(0, 2 ** i): #Recorrer y generar la cadena desde 0 hasta el numero especificado
+            #Conversion a binario
+            aux = str(bin(j))[2:]
+            tam = len(aux)
+            if tam < i: 
+                #modo manual
+                #zeros = '0' * i
+                #aux = zeros + aux
+                #Modo con función
+                aux = aux.zfill(i)
+                contador = contador + len(aux)
+                contadorUnos += aux.count('1')
+                f.writelines(aux + ",")
+                #cadenas.append(aux) esto es usando una lista (mucha memoria)
+            else: 
+                f.writelines(aux + ",")
+                contadorUnos +=  aux.count('1')
+                contador = contador + len(aux)
+                #cadenas.append(aux)
+        nsimbolos.append(contador)
+        unos.append(contadorUnos)
+        contador = 0
+        contadorUnos = 0
+        f.write("\n\n")
+    #cadenas.append('}')
+    f.write('}')
+    f.close()
+
     #formateando si se usara una lista too fucking much memory
     # i = 0
     # for i in range(len(cadenas)):
@@ -67,13 +65,28 @@ def graficacion(opcion):
     #Primera gráfica, numero de cadenas y numero total de simbolos
     puntosx = ntotal
     puntosy1 = nsimbolos
+    puntosy1log = []
+    puntosy2log = []
+
     plt.plot(puntosx, puntosy1, color = 'r')
-    plt.xlabel("Numero de cadenas")
+    plt.xlabel("Numero de cadena")
     plt.ylabel("Numeros de simbolos por cadena")
     plt.ticklabel_format(style = 'plain')
     plt.title("Primera gráfica. Numero de cadena y numero total de simbolos")
     plt.grid()
     plt.show()
+    
+    #Primera gráfica con log10
+    for numero in puntosy1:
+        puntosy1log.append(math.log10(numero))
+    plt.plot(puntosx, puntosy1log, color = 'y')
+    plt.xlabel("Numero de cadena")
+    plt.ylabel("Numeros de simbolos por cadena")
+    plt.ticklabel_format(style = 'plain')
+    plt.title("Primera gráfica con Log10")
+    plt.grid()
+    plt.show()
+
 
 
     #Segunda gráfica, numero de cadenas y numero total de unos
@@ -86,6 +99,16 @@ def graficacion(opcion):
     plt.grid()
     plt.show()
 
+    #Segunda gráfica con log10
+    for numero in puntosy2:
+        puntosy2log.append(math.log10(numero))
+    plt.plot(puntosx, puntosy2log, color = 'y')
+    plt.xlabel("Numero de cadena")
+    plt.ylabel("Numeros de unos por cadena")
+    plt.ticklabel_format(style = 'plain')
+    plt.title("Segunda gráfica con Log10")
+    plt.grid()
+    plt.show()
 
 #Menu 
 while decision != "no":
@@ -97,25 +120,28 @@ while decision != "no":
         ntotal = []
         unos = []
         opcion = int(input("Introduzca el numero de hasta donde desea obtener el universo de cadenas: "))
-        #Mandando a llamar a la funcion y midiendo el tiempo
-        inicio = default_timer()
-        binarios(opcion)
-        fin = default_timer()
-        tiempo = fin - inicio
-        if tiempo > 120:
-            tiempo = tiempo / 60
-            print(f"El tiempo de ejecucion fue: {tiempo} minutos\n")
+        if opcion > 0 and opcion < 1000:
+            #Mandando a llamar a la funcion y midiendo el tiempo
+            inicio = default_timer()
+            binarios(opcion)
+            fin = default_timer()
+            tiempo = fin - inicio
+            if tiempo > 120:
+                tiempo = tiempo / 60
+                print(f"El tiempo de ejecucion fue: {tiempo} minutos\n")
+            else:
+                print(f"El tiempo de ejecucion fue: {tiempo} segundos\n")
+            print("Revise el archivo llamado Programa1.txt\n\n")
+            graficacion(opcion)
         else:
-            print(f"El tiempo de ejecucion fue: {tiempo} segundos\n")
-        print("Revise el archivo llamado Programa1.txt\n\n")
-        graficacion(opcion)
+            print("El numero está fuera de rango")
 
     elif decision == 2:
         nsimbolos = []
         ntotal = []
         unos = []
         opcion = randint(1,1000)
-        print(opcion)
+        print(f"El numero elegido automaticamente fue: {opcion}")
         #Mandando a llamar a la funcion y midiendo el tiempo
         inicio = default_timer()
         binarios(opcion)
