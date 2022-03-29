@@ -1,8 +1,10 @@
+# -*-coding: utf-8 -*-
 from random import randint
 import matplotlib.pyplot as plt
 from timeit import default_timer
 import math
 from math import sqrt
+
 #Variables
 opcion = 0
 menu = 0
@@ -18,8 +20,10 @@ def primos(opcion):
     global contadorUnos
     global k
     k = 0
+
     f = open("Programa2.txt", "w", encoding="utf-8")
     g = open("Programa2_1.txt", "w", encoding="utf-8")
+
     f.write('Conjunto decimal\nΣ^* = ' + '{')
     g.write('Conjunto Binario\nΣ^* = ' + '{')
     for i in range(2, opcion + 2):

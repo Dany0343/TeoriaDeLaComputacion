@@ -1,3 +1,4 @@
+# -*-coding: utf-8 -*-
 #Variables
 from random import randint
 from timeit import default_timer
@@ -25,7 +26,7 @@ def binarios(opcion):
     #cadenas = ['{', 'ε']
     global contador
     global contadorUnos
-    f = open("Programa1.txt", "w", encoding="utf-8")
+    f = open("Programa1.txt", "w",encoding="utf-8")
     f.write('Σ^* = ' + '{' + 'ε' + ',' + "\n")
     for i in range(1, opcion + 1):
         for j in range(0, 2 ** i): #Recorrer y generar la cadena desde 0 hasta el numero especificado

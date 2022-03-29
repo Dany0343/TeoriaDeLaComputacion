@@ -1,18 +1,9 @@
+# -*-coding: utf-8 -*-
 import random
 from random import randint
 import time
-from turtle import *
+#from turtle import *
 import turtle as tur
-# Realizar un programa que simule el funcionamiento de un protocolo utilizando un AFD.
-
-# 1. El programa debe funcionar automáticamente.
-# 2. Debe de verificar si el protocolo está encendido o apagado y ejecutarse nuevamente si está encendido. El programa deberá determinar automáticamente para detenerse.
-# 3. Generar 10^6 cadenas binarias aleatoriamente de longitud 64.
-# 4. Hacer que el programa se espere 1 segundo.
-# 5. Posteriormente validar cada una de las cadenas con el AFD de paridad.
-# 6. Generar cuatro archivos de texto para las salidas. El primer archivo tendrá todas las cadenas generadas, el segundo archivo tendrá las cadenas aceptadas y el tercer archivo las cadenas rechazadas. Si el programa entra más de una vez, los archivos deben de almacenar los datos de todas las corridas. Un cuarto archivo debe de tener la historia de la evaluación de los autómatas, es decir, imprimir cada cambio de estado.
-# 7. Tener la opción de graficar el AFD completo (protocolo y paridad en el mismo grafo).
-# 8. En el reporte debe de estar también el código de la implementación.
 
 #Generacion de 1 millon de cadenas binarias de 64 bits
 k = 0 #iterador para mostrar las veces que el automata ha encendido
@@ -68,7 +59,7 @@ def graficacion():
 
 def cadenas():
     f = open("Programa3_Cadenas.txt", "a", encoding="utf-8") #Es importante poner el parametro 'a' para que añada al final y no sobreescriba todo.
-    for i in range(0, 1000000): #Numero de cadenas
+    for i in range(0, 10000): #Numero de cadenas
         for j in range(0, 64): #Numero de bits
             aux = randint(0,1)
             f.write(str(aux))
