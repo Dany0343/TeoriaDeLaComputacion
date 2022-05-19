@@ -24,7 +24,7 @@ def graficacion():
 
 def main():
     global estado 
-    estado = random.choice([True, True]) #Se inicializa el automata de forma automatica 
+    estado = random.choice([True, False]) #Se inicializa el automata de forma automatica 
     if estado == True:
         print("Se inicia el Automata")
         automata() #Se manda a llamar al automata para revisar el archivo con las palabras
@@ -46,22 +46,18 @@ def automata():
     ebay = 0
     page = 0
     site = 0
-    texto = []
     #Se lee el archivo
     f = open("textoPrueba.txt", "r")
-
     for i in f:
         if i != '\n': #Se revisa si el renglon no está vacío
-            estado = 'A' #Se setea un estado inicial
+            estado = 'q0' #Se setea un estado inicial
             cadena = i.lower() #Se guarda el i actual en la variable cadena
             counter = 0 #Contador para obtener la posicion de la palabra
-            for k in cadena: #Cada renglon se mete caracter por caracter a una lista para facilitar su uso
-                texto.append(k)
-            for index, j in enumerate(texto):
+            for j in cadena:
                 if j == '\n': #Caso para terminar el ciclo
-                    print("Se terminó las listas de palabras") 
+                    print("Se terminaron las listas de palabras") 
                     break
-                elif j =='w' and (estado == 'A' or estado == 'B'): #recursivo a si mismo si es el caso
+                elif j =='w' and (estado == 'A' or estado == 'B'):
                     estado = 'B'
                     continue
                 elif j =='e' and estado == 'B':
@@ -69,18 +65,36 @@ def automata():
                     continue
                 elif j =='b' and estado == 'C':
                     estado = 'D'
-                    if (str(texto[index+1]) != 'p' and str(texto[index+1]) != 'm' and str(texto[index+1]) != 's' and str(texto[index+1]) != 'e') and estado == 'D':
-                        web = web + 1 #Se llega a un estado de transición
-                        estado = 'A'
+                    continue
+                elif (j != 'p' or j != 's' or j != 'm' or j != 'w' or j != 'e') and estado == 'D':
+                    web = web + 1 #Se llega a un estado de transición
+                    estado = 'A' #Seguimos en duda aqui
                     continue
                 elif j =='w' and estado == 'D': #Se regresa por si vuelve a empezar la W
                     estado = 'B'
                     web = web + 1 
+                    continue
                 #De aquí falta a R
-                elif j == 'e'
-                #Primera bifurcacion hacía arriba
-                elif j == 'p' and estado == 'I': #recursivo a si mismo
-                    estado = 'I'
+
+                #Primera bifurcacion
+                #Sin web
+                elif j == 'p' and estado != 'D':
+                    estado = 'Ie'
+                    continue
+                elif j =='p' and estado == 'I':
+                    estado = 'Ie'
+                    continue
+                elif j == 'a' and estado == 'Ie':
+                    estado == 'J'
+                    continue
+                elif j == 'g' and estado == 'J':
+                    estado = 'K'
+                    continue
+                elif j == 'e' and estado == 'K':
+                    estado = 'L'
+                    page = page + 1
+                    continue
+                #Viene junto con web
                 elif j =='p' and estado == 'D':
                     estado = 'I'
                     continue
@@ -91,34 +105,11 @@ def automata():
                     estado = 'K'
                     continue
                 elif j =='e' and estado == 'K':
-                    if str(texto[index-4] == 'b'):
-                        webpage = webpage + 1
-                        estado = 'A' #Se setea el estado inicial para reconocer una nueva cadena
-                    else:
-                        page = page + 1
-                        estado = 'A' #Se setea el estado inicial para reconocer una nueva cadena
+                    estado = 'L'
+                    webpage = webpage + 1
                     continue
-                #Segunda bifurcacion hacía abajo
-                elif j == 's' and estado == 'E': #recursivo a si mismo
-                    estado = 'E'
-                elif j =='s' and estado == 'D':
-                    estado = 'E'
-                    continue
-                elif j =='i' and estado == 'E':
-                    estado = 'F'
-                    continue
-                elif j =='t' and estado == 'F':
-                    estado = 'G'
-                    continue
-                elif j =='e' and estado == 'G':
-                    if str(texto[index-4] == 'b'):
-                        website = website + 1
-                        estado = 'A' #Se setea el estado inicial para reconocer una nueva cadena
-                    else:
-                        site = site + 1
-                        estado = 'A' #Se setea el estado inicial para reconocer una nueva cadena
-                    continue
-                #Siguiendo con el flujo normal 
+
+
                 elif j =='m' and estado == 'D':
                     estado = 'M'
                 elif j =='a' and estado == 'M':
@@ -130,7 +121,7 @@ def automata():
                 elif j =='e' and estado == 'O':
                     estado = 'P'
                 elif j =='r' and estado == 'P':
-                    estado = 'A' #Se setea el estado inicial para reconocer una nueva cadena
+                    estado = 'Q'
                     webmaster = webmaster + 1 #Se llega a un estado de transición
                 
             print(f"Los resultados para cada variable fueron: \n Web {web}\n WebPage {webpage}\n Website {website}\n Webmaster {webmaster}\n Ebay {ebay}\n page {page}\n site {site}")
