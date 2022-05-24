@@ -1,9 +1,8 @@
-from calendar import c
 import random
 from random import randint
 import time
-from turtle import *
-import turtle as tur
+from graphviz import Digraph
+
 
 # Programar el autómata finito determinístico que reconozca las palabras:
 
@@ -20,8 +19,12 @@ import turtle as tur
 
 #Funciones
 def graficacion():
-    print("A graficar")
-
+    gra = Digraph()
+    gra.node('a', 'Machine Learning Errors')
+    gra.node('b', 'MSE')
+    gra.node('c', 'MAE')
+    gra.edges(['ab', 'ac'])
+    print(gra.source)
 
 def main():
     global estado 
@@ -50,6 +53,7 @@ def automata():
 
     #Para guardar letra por letra del archivo en una lista
     texto = []
+
     #Se lee el archivo
     f = open("textoPrueba.txt", "r")
 

@@ -1,0 +1,7 @@
+digraph {
+	a [label="Machine Learning Errors"]
+	b [label=MSE]
+	c [label=MAE]
+	a -> b
+	a -> c
+}
