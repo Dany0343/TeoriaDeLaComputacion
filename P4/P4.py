@@ -3,6 +3,8 @@ from random import randint
 import time
 from automata.fa.dfa import DFA
 from visual_automata.fa.dfa import VisualDFA
+from automata.fa.nfa import NFA
+from visual_automata.fa.nfa import VisualNFA
 
 # Programar el autómata finito determinístico que reconozca las palabras:
 
@@ -19,54 +21,83 @@ from visual_automata.fa.dfa import VisualDFA
 
 #Funciones
 def graficacion():
-    dfa = VisualDFA(
-    states={"q0", "q1", "q2", "q3", "q4"},
-    input_symbols={"0", "1"},
-    transitions={
-        "q0": {"0": "q3", "1": "q1"},
-        "q1": {"0": "q3", "1": "q2"},
-        "q2": {"0": "q3", "1": "q2"},
-        "q3": {"0": "q4", "1": "q1"},
-        "q4": {"0": "q4", "1": "q1"},
-    },
-    initial_state="q0",
-    final_states={"q2", "q4"},
-)
-    dfa = DFA(
-    states={"q0", "q1", "q2", "q3", "q4"},
-    input_symbols={"0", "1"},
-    transitions={
-        "q0": {"0": "q3", "1": "q1"},
-        "q1": {"0": "q3", "1": "q2"},
-        "q2": {"0": "q3", "1": "q2"},
-        "q3": {"0": "q4", "1": "q1"},
-        "q4": {"0": "q4", "1": "q1"},
-    },
-    initial_state="q0",
-    final_states={"q2", "q4"},
-)
-    dfa = VisualDFA(dfa)
-    new_dfa = VisualDFA(
-    states={'q0', 'q1', 'q2'},
-    input_symbols={'0', '1'},
-    transitions={
-        'q0': {'0': 'q0', '1': 'q1'},
-        'q1': {'0': 'q0', '1': 'q2'},
-        'q2': {'0': 'q2', '1': 'q1'}
-    },
-    initial_state='q0',
-    final_states={'q1'}
-)
-    new_dfa.show_diagram()
-    minimal_dfa = VisualDFA.minify(new_dfa)
-    minimal_dfa.show_diagram(view = True)
+    opc = int(input("Cuál desea observar\n1.DFA\n2.NFA\n"))
+    if opc == 1:
+        dfa = VisualNFA(
+        states={"A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U"},
+        input_symbols={"w", "e", "b", "m", "a", "s", "t", "r", "p", "g", "i", "y", "Σ"},
+        transitions={
+        "A": {"w": {"B"}, "Σ": {"A"}, "p": {"I"}, "e": {"R"}, "s": {"E"}},
+        "B": {"e": {"C"}, "w": {"B"}},
+        "C": {"b": {"D"}, "e": {"R"}},
+        "D": {"w": {"B"}, "p": {"I"}, "e": {"R"}, "s": {"E"}, "m": {"M"}},
+        "M": {"m": {"M"}, "a": {"N"}},
+        "N": {"s": {"Ñ"}},
+        "Ñ": {"t": {"O"}},
+        "O": {"e": {"P"}},
+        "P": {"r": {"Q"}},
+        "Q": {"Σ": {"A"}},
+        "E": {"s": {"E"}, "w": {"B"}, "i": {"F"}},
+        "F": {"w": {"B"}, "t": {"G"}},
+        "G": {"w": {"B"}, "e": {"H"}},
+        "H": {"w": {"B"}, "Σ": {"A"}},
+        "I": {"p": {"I"}, "a": {"J"}},
+        "J": {"g": {"K"}, "p": {"I"}},
+        "K": {"e": {"L"}, "p": {"I"}},
+        "L": {"Σ": {"A"}, "p": {"I"}},
+        "R": {"e": {"R"}, "b": {"S"}},
+        "S": {"e": {"R"}, "a": {"T"}},
+        "T": {"e": {"R"}, "y": {"U"}},
+        "U": {"e": {"R"}, "Σ": {"A"}}
+        },
+        initial_state="A",
+        final_states={"Q", "L", "H", "U"},
+        )
+        dfa = VisualNFA(dfa)
+        dfa.show_diagram(view = True)
+    elif opc == 2:
+        dfa = VisualNFA(
+        states={"q0","q1","q2","q3","q4","q5","q6","q7","q8","q9","q10","q11","q12","q13","q14","q15","q16","q17","q18","q19","q20","q21"},
+        input_symbols={"w", "e", "b", "m", "a", "s", "t", "r", "p", "g", "i", "y", "Σ"},
+        transitions={
+        "q0": {"Σ": {"q0"}, "e": {"q18"}, "w": {"q1"}},
+        "q1": {"w": {"q1"}, "e": {"q18"}, "e": {"q2"}},
+        "q2": {"b": {"q3"}},
+        "q3": {"p": {"q8"}, "s": {"q4"}, "m": {"q12"}, "e": {"q18"}},
+        "q12": {"a": {"q13"}},
+        "q13": {"s": {"q14"}},
+        "q14": {"t": {"q15"}},
+        "q15": {"e": {"q16"}, "e": {"q18"}},
+        "q16": {"r": {"q17"}},
+        # "q17": {"Σ": {"A"}},
+        "q4": {"s": {"q4"}, "i": {"q5"}},
+        "q5": {"t": {"q6"}},
+        "q6": {"e": {"q7"}},
+        # "q7": {"w": {"B"}, "Σ": {"A"}},
+        "q8": {"p": {"q8"}, "a": {"q9"}},
+        "q9": {"g": {"q10"}},
+        "q10": {"e": {"q11"}},
+        # "q11": {"Σ": {"A"}, "p": {"I"}},
+        "q18": {"e": {"q18"}, "b": {"q19"}},
+        "q19": {"a": {"q20"}},
+        "q20": {"y": {"q21"}},
+        # "q21": {"e": {"R"}, "Σ": {"A"}}
+        },
+        initial_state="q0",
+        final_states={"q17", "q11", "q7", "q21"},
+        )
+        dfa = VisualNFA(dfa)
+        dfa.show_diagram(view = True)
+    else:
+        print("No se eligió una opción correcta")
+        graficacion()
 
 
 
 
 def main():
     global estado 
-    estado = random.choice([True, False]) #Se inicializa el automata de forma automatica 
+    estado = random.choice([True, True]) #Se inicializa el automata de forma automatica 
     if estado == True:
         print("Se inicia el Automata")
         automata() #Se manda a llamar al automata para revisar el archivo con las palabras
