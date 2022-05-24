@@ -67,7 +67,7 @@ def graficacion():
         "q12": {"a": {"q13"}},
         "q13": {"s": {"q14"}},
         "q14": {"t": {"q15"}},
-        "q15": {"e": {"q16"}, "e": {"q18"}},
+        "q15": {"e": {"q16", "q18"}},
         "q16": {"r": {"q17"}},
         # "q17": {"Σ": {"A"}},
         "q4": {"s": {"q4"}, "i": {"q5"}},
@@ -91,8 +91,6 @@ def graficacion():
     else:
         print("No se eligió una opción correcta")
         graficacion()
-
-
 
 
 def main():
