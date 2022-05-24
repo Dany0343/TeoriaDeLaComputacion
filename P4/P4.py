@@ -1,9 +1,8 @@
-from calendar import c
 import random
 from random import randint
 import time
-from turtle import *
-import turtle as tur
+from automata.fa.dfa import DFA
+from visual_automata.fa.dfa import VisualDFA
 
 # Programar el autómata finito determinístico que reconozca las palabras:
 
@@ -20,7 +19,49 @@ import turtle as tur
 
 #Funciones
 def graficacion():
-    print("A graficar")
+    dfa = VisualDFA(
+    states={"q0", "q1", "q2", "q3", "q4"},
+    input_symbols={"0", "1"},
+    transitions={
+        "q0": {"0": "q3", "1": "q1"},
+        "q1": {"0": "q3", "1": "q2"},
+        "q2": {"0": "q3", "1": "q2"},
+        "q3": {"0": "q4", "1": "q1"},
+        "q4": {"0": "q4", "1": "q1"},
+    },
+    initial_state="q0",
+    final_states={"q2", "q4"},
+)
+    dfa = DFA(
+    states={"q0", "q1", "q2", "q3", "q4"},
+    input_symbols={"0", "1"},
+    transitions={
+        "q0": {"0": "q3", "1": "q1"},
+        "q1": {"0": "q3", "1": "q2"},
+        "q2": {"0": "q3", "1": "q2"},
+        "q3": {"0": "q4", "1": "q1"},
+        "q4": {"0": "q4", "1": "q1"},
+    },
+    initial_state="q0",
+    final_states={"q2", "q4"},
+)
+    dfa = VisualDFA(dfa)
+    new_dfa = VisualDFA(
+    states={'q0', 'q1', 'q2'},
+    input_symbols={'0', '1'},
+    transitions={
+        'q0': {'0': 'q0', '1': 'q1'},
+        'q1': {'0': 'q0', '1': 'q2'},
+        'q2': {'0': 'q2', '1': 'q1'}
+    },
+    initial_state='q0',
+    final_states={'q1'}
+)
+    new_dfa.show_diagram()
+    minimal_dfa = VisualDFA.minify(new_dfa)
+    minimal_dfa.show_diagram(view = True)
+
+
 
 
 def main():
