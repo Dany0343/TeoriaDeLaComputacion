@@ -67,7 +67,7 @@ def graficacion():
         "q12": {"a": {"q13"}},
         "q13": {"s": {"q14"}},
         "q14": {"t": {"q15"}},
-        "q15": {"e": {"q16"}, "e": {"q18"}},
+        "q15": {"e": {"q16", "q18"}},
         "q16": {"r": {"q17"}},
         # "q17": {"Σ": {"A"}},
         "q4": {"s": {"q4"}, "i": {"q5"}},
@@ -135,6 +135,11 @@ def automata():
                     print("Se terminó las listas de palabras") 
                     break
                 #Del primer estado a todos los demás
+                elif (j != 'w' and 'e' and 'b' and 'm' and 'a' and 's' and 't' and 'r' and 'p' and 'i' and 'y') and estado == 'A':
+                    edoanterior = estado
+                    estado = 'A'
+                    a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
+                    continue
                 elif j == 'e' and estado == 'A':
                     edoanterior = estado
                     if str(texto[index+1]) != 'b':
@@ -175,6 +180,13 @@ def automata():
                         estado = 'R'
                         a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
                         continue
+                    elif (str(texto[index+1]) == 'b' and str(texto[index+2]) == 'a' and str(texto[index+3]) == 'y') and estado == 'B':
+                        edoanterior = estado
+                        web.append(index - 2)
+                        ebay.append(index - 3)
+                        estado = 'A'
+                        a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
+                        continue
                     estado = 'C'
                     a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
                     continue
@@ -186,7 +198,7 @@ def automata():
                         web.append(index - 2) #Se llega a un estado de transición
                         estado = 'A'
                         a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
-                    continue
+                    continue  
                 elif j =='w' and estado == 'D': #Se regresa por si vuelve a empezar la W
                     edoanterior = estado
                     estado = 'B'
@@ -261,16 +273,30 @@ def automata():
                     continue
                 elif j =='e' and estado == 'K':
                     if str(texto[index-4]) == 'b':
+                        if (str(texto[index+1]) == 'b' and str(texto[index+2]) == 'a' and str(texto[index+3]) == 'y') and estado == 'K':
+                            edoanterior = estado
+                            estado = 'A'
+                            ebay.append(index - 2)
+                            webpage.append(index - 3)
+                            a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
+                            continue
                         edoanterior = estado
                         webpage.append(index - 6)
                         estado = 'A' #Se setea el estado inicial para reconocer una nueva cadena
                         a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
+                        continue
                     else:
+                        if (str(texto[index+1]) == 'b' and str(texto[index+2]) == 'a' and str(texto[index+3]) == 'y') and estado == 'K':
+                            edoanterior = estado
+                            page.append(index - 3)
+                            ebay.append(index - 2)
+                            a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
+                            continue
                         edoanterior = estado
                         page.append(index - 3)
                         estado = 'A' #Se setea el estado inicial para reconocer una nueva cadena
                         a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
-                    continue
+                        continue
 
                 #Segunda bifurcacion hacía abajo
                 elif j == 's' and estado == 'E': #recursivo a si mismo
@@ -313,10 +339,23 @@ def automata():
                 elif j =='e' and estado == 'G':
                     edoanterior = estado
                     if str(texto[index-4]) == 'b':
+                        if(str(texto[index+1]) == 'b' and str(texto[index+2]) == 'a' and str(texto[index+3]) == 'y') and estado == 'G' and str(texto[index-4]) == 'b':
+                            edoanterior = estado
+                            website.append(index - 6)
+                            ebay.append(index - 3)
+                            estado = 'A'
+                            a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
+                            continue
                         website.append(index - 6)
                         estado = 'A' #Se setea el estado inicial para reconocer una nueva cadena
                         a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
                     else:
+                        if (str(texto[index+1]) == 'b' and str(texto[index+2]) == 'a' and str(texto[index+3]) == 'y') and estado == 'G':
+                            edoanterior = estado
+                            site.append(index - 3)
+                            ebay.append(index - 3)
+                            estado = 'A'
+                            a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
                         site.append(index - 3)
                         estado = 'A' #Se setea el estado inicial para reconocer una nueva cadena
                         a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
