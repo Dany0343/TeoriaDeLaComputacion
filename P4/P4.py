@@ -93,8 +93,6 @@ def graficacion():
         graficacion()
 
 
-
-
 def main():
     global estado 
     estado = random.choice([True, True]) #Se inicializa el automata de forma automatica 
