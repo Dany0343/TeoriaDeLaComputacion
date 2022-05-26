@@ -1,10 +1,10 @@
 import random
 from random import randint
 import time
-from automata.fa.dfa import DFA
-from visual_automata.fa.dfa import VisualDFA
-from automata.fa.nfa import NFA
-from visual_automata.fa.nfa import VisualNFA
+# from automata.fa.dfa import DFA
+# from visual_automata.fa.dfa import VisualDFA
+# from automata.fa.nfa import NFA
+# from visual_automata.fa.nfa import VisualNFA
 
 # Programar el autómata finito determinístico que reconozca las palabras:
 
@@ -135,7 +135,7 @@ def automata():
                     print("Se terminó las listas de palabras") 
                     break
                 #Del primer estado a todos los demás
-                elif (j != 'w' and 'e' and 'b' and 'm' and 'a' and 's' and 't' and 'r' and 'p' and 'i' and 'y') and estado == 'A':
+                elif (j != 'w' and j !='e' and j !='b' and j != 'm' and j !='a' and j != 's' and j != 't' and j != 'r' and j != 'p' and j != 'i' and j !='y') and estado == 'A':
                     edoanterior = estado
                     estado = 'A'
                     a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
@@ -187,6 +187,9 @@ def automata():
                         estado = 'A'
                         a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
                         continue
+                    elif str(texto[index+1]) != 'b':
+                        estado = 'A'
+                        continue
                     estado = 'C'
                     a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
                     continue
@@ -212,6 +215,9 @@ def automata():
                     a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
                     continue
                 elif j == 'e' and estado == 'D':
+                    if str(texto[index+1]) != 'b':
+                        estado = 'A'
+                        continue
                     edoanterior = estado
                     estado = 'R'
                     a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
@@ -222,6 +228,9 @@ def automata():
                         estado = 'R'
                         a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
                         continue
+                    elif str(texto[index+1]) != 'a':
+                        estado = 'A'
+                        continue
                     estado = 'S'
                     a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
                     continue
@@ -230,6 +239,9 @@ def automata():
                     if str(texto[index+1]) == 'e':
                         estado = 'R'
                         a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
+                        continue
+                    elif str(texto[index+1]) != 'y':
+                        estado = 'A'
                         continue
                     estado = 'T'
                     a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
@@ -262,17 +274,23 @@ def automata():
                     a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
                     continue
                 elif j =='a' and estado == 'I':
+                    if str(texto[index+1]) != 'g':
+                        estado = 'A'
+                        continue
                     edoanterior = estado
                     estado = 'J'
                     a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
                     continue
                 elif j =='g' and estado == 'J':
+                    if str(texto[index+1]) != 'e':
+                        estado = 'A'
+                        continue
                     edoanterior = estado
                     estado = 'K'
                     a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
                     continue
                 elif j =='e' and estado == 'K':
-                    if str(texto[index-4]) == 'b':
+                    if str(texto[index-4]) == 'b' and str(texto[index-5]) == 'e' and str(texto[index-6]) == 'w':
                         if (str(texto[index+1]) == 'b' and str(texto[index+2]) == 'a' and str(texto[index+3]) == 'y') and estado == 'K':
                             edoanterior = estado
                             estado = 'A'
@@ -288,6 +306,7 @@ def automata():
                     else:
                         if (str(texto[index+1]) == 'b' and str(texto[index+2]) == 'a' and str(texto[index+3]) == 'y') and estado == 'K':
                             edoanterior = estado
+                            estado = 'A'
                             page.append(index - 3)
                             ebay.append(index - 2)
                             a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
@@ -324,6 +343,9 @@ def automata():
                         estado = 'B'
                         a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
                         continue
+                    elif str(texto[index+1]) != 't':
+                        estado = 'A'
+                        continue
                     estado = 'F'
                     a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
                     continue
@@ -333,12 +355,15 @@ def automata():
                         estado = 'B'
                         a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
                         continue
+                    elif str(texto[index+1]) != 'e':
+                        estado = 'A'
+                        continue
                     estado = 'G'
                     a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
                     continue
                 elif j =='e' and estado == 'G':
                     edoanterior = estado
-                    if str(texto[index-4]) == 'b':
+                    if str(texto[index-4]) == 'b' and str(texto[index-5]) == 'e' and str(texto[index-6]) == 'w':
                         if(str(texto[index+1]) == 'b' and str(texto[index+2]) == 'a' and str(texto[index+3]) == 'y') and estado == 'G' and str(texto[index-4]) == 'b':
                             edoanterior = estado
                             website.append(index - 6)
@@ -363,26 +388,41 @@ def automata():
 
                 #Siguiendo con el flujo normal 
                 elif j =='m' and estado == 'D':
+                    if str(texto[index+1]) != 'a':
+                        estado = 'A'
+                        continue
                     edoanterior = estado
                     estado = 'M'
                     a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
                     continue
                 elif j =='a' and estado == 'M':
+                    if str(texto[index+1]) != 's':
+                        estado = 'A'
+                        continue
                     edoanterior = estado
                     estado = 'N'
                     a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
                     continue
                 elif j =='s' and estado == 'N':
+                    if str(texto[index+1]) != 't':
+                        estado = 'A'
+                        continue
                     edoanterior = estado
                     estado = 'Ñ'
                     a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
                     continue
                 elif j =='t' and estado == 'Ñ':
+                    if str(texto[index+1]) != 'e':
+                        estado = 'A'
+                        continue
                     edoanterior = estado
                     estado = 'O'
                     a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
                     continue
                 elif j =='e' and estado == 'O':
+                    if str(texto[index+1]) != 'r':
+                        estado = 'A'
+                        continue
                     edoanterior = estado
                     estado = 'P'
                     a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
