@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import random
 from random import randint
 import time
@@ -95,7 +96,7 @@ def graficacion():
 
 def main():
     global estado 
-    estado = random.choice([True, True]) #Se inicializa el automata de forma automatica 
+    estado = random.choice([True, False]) #Se inicializa el automata de forma automatica 
     if estado == True:
         print("Se inicia el Automata")
         automata() #Se manda a llamar al automata para revisar el archivo con las palabras
@@ -170,6 +171,9 @@ def automata():
 
                 #Reconocimiento de web
                 elif j =='w' and (estado == 'A' or estado == 'B'): #recursivo a si mismo
+                    if str(texto[index+1]) != 'e':
+                        estado = 'A'
+                        continue
                     edoanterior = estado
                     estado = 'B'
                     a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
@@ -182,8 +186,12 @@ def automata():
                         continue
                     elif (str(texto[index+1]) == 'b' and str(texto[index+2]) == 'a' and str(texto[index+3]) == 'y') and estado == 'B':
                         edoanterior = estado
-                        web.append(index - 2)
-                        ebay.append(index - 3)
+                        if index == 1:
+                            web.append(0)
+                            ebay.append(0)
+                        else:
+                            web.append(index - 2)
+                            ebay.append(index - 3)
                         estado = 'A'
                         a.write(f"[δ : {edoanterior} X {j} -> {estado}]\n")
                         continue

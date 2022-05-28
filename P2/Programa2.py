@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from random import randint
 import matplotlib.pyplot as plt
 from timeit import default_timer

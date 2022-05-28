@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #Variables
 from random import randint
 from timeit import default_timer
