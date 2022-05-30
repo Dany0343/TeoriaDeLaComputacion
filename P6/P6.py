@@ -4,7 +4,7 @@ from enum import auto
 import random
 from random import randint
 import time
-
+import turtle
 # Programar un autómata de pila que sirva para reconocer el lenguaje libre de contexto {0^n 1^n | n >= 1}.
 
 # Adicionalmente, el programa debe de contar con las siguientes características:
@@ -29,45 +29,163 @@ def automata():
     if cadena == False:
         print("Se termina el programa")
     else:
-        for index, i in enumerate(cadena): 
-            counter = counter + 1
-            if i == '0':
-                pila.append('0')
-                print(f"<q2, {cadena[index:-1]}, {pila[::-1]}>")
-                a.write(f"<q2, {cadena[index:-1]}, {pila[::-1]}>\n")
-                continue
-            elif i == '1':
-                if pila[-1] == '0':
-                    pila.pop()
-                    print(f"<q3, {cadena[index:-1]}, {pila[::-1]}>")
-                    a.write(f"<q3, {cadena[index:-1]}, {pila[::-1]}>\n")
-                elif pila[-1] == 'z0' and i == '1':
-                    print(f"<q3, {cadena[index:-1]}, {pila[::-1]}>")
-                    a.write(f"<q3, {cadena[index:-1]}, {pila[::-1]}>\n")
-                    print("Se terminó la cadena pero la pila sigue con algo, por lo tanto la cadena que ingresó no es valida y no las reglas {0^n 1^n | n >= 1}")
-                    break
-                continue
-            elif i == '\n':
-                if pila[-1] == 'z0':
-                    print(f"<q4, \ n, {pila[::-1]}>")
-                    a.write(f"<q4, \ n, {pila[::-1]}>\n")
-                    print("Se ha llegado a z0, la cadena es correcta!")
-                    if len(cadena) <= 10:
-                        graficacion(cadena)
-                    else:
-                        print("La cadena es mayor a 10 caracteres, así que no hay graficación")
-                else:
-                    print("Se terminó la cadena pero la pila sigue con algo, por lo tanto la cadena que ingresó no es valida y no las reglas {0^n 1^n | n >= 1}")
-                break #Se termina el ciclo ya que se terminó de leer la cadena
-        # print(f"La cadena es: {cadena}")
-        a.close()
+        if len(cadena) <= 11:
+            t = turtle.Turtle()
+            turtle.title("Automata de pila")
+            # turtle.getscreen().bgcolor("black")
+            # turtle.color("red")
+            # turtle.pencolor("purple")
+            t.forward(100)
+            t.right(90)
+            t.forward(100)
+            t.right(90)
+            t.forward(100)
+            t.right(90)
+            t.forward(100)
+            #flecha de arriba
+            t.goto(50,0)
+            t.fd(70)
+            t.up()
+            #flecha de abajo
+            t.goto(50,-100)
+            t.down()
+            t.bk(70)
+            t.up()
+            #Escribir texto
+            t.goto(50,-50)
+            t.down()
+            t.write('q', align="center", font=('Arial', 16, 'normal'))
+            
+            #Segunda tortuga
+            t2 = turtle.Turtle()
+            #Tercera tortuga
+            t3 = turtle.Turtle()
+            
+            time.sleep(1)
+            t3.clear()
+            t3.up()
+            t3.goto(50, -195)
+            t3.down()
+            t3.write(pila[::-1], font=('Arial', 16, 'normal'))
 
-def graficacion(cadena):
-    print("Hola graficacion")
+            t.hideturtle()
+            t2.hideturtle()
+            t3.hideturtle()
+            for index, i in enumerate(cadena): 
+                counter = counter + 1
+                if i == '0':
+                    pila.append('0')
+                    print(f"<q2, {cadena[index:-1]}, {pila[::-1]}>")
+                    a.write(f"<q2, {cadena[index:-1]}, {pila[::-1]}>\n")
+                    time.sleep(1)
+                    t2.clear()
+                    t2.up()
+                    t2.goto(50, 45)
+                    t2.down()
+                    t2.write(cadena[index:], font=('Arial', 16, 'normal'))
+
+                    time.sleep(1)
+                    t3.clear()
+                    t3.up()
+                    t3.goto(50, -195)
+                    t3.down()
+                    t3.write(pila[::-1], font=('Arial', 16, 'normal'))
+
+                    continue
+                elif i == '1':
+                    if pila[-1] == '0':
+                        pila.pop()
+                        print(f"<q3, {cadena[index:-1]}, {pila[::-1]}>")
+                        a.write(f"<q3, {cadena[index:-1]}, {pila[::-1]}>\n")
+                        time.sleep(1)
+                        t2.clear()
+                        t2.up()
+                        t2.goto(50, 45)
+                        t2.down()
+                        t2.write(cadena[index:], font=('Arial', 16, 'normal'))
+                        
+                        time.sleep(1)
+                        t3.clear()
+                        t3.up()
+                        t3.goto(50, -195)
+                        t3.down()
+                        t3.write(pila[::-1], font=('Arial', 16, 'normal'))
+                    elif pila[-1] == 'z0' and i == '1':
+                        print(f"<q3, {cadena[index:-1]}, {pila[::-1]}>")
+                        a.write(f"<q3, {cadena[index:-1]}, {pila[::-1]}>\n")
+                        print("Se terminó la cadena pero la pila sigue con algo, por lo tanto la cadena que ingresó no es valida y no las reglas {0^n 1^n | n >= 1}")
+                        time.sleep(1)
+                        t2.clear()
+                        t2.up()
+                        t2.goto(50, 45)
+                        t2.down()
+                        t2.write(cadena[index:], font=('Arial', 16, 'normal'))
+
+                        time.sleep(1)
+                        t3.clear()
+                        t3.up()
+                        t3.goto(50, -195)
+                        t3.down()
+                        t3.write(pila[::-1], font=('Arial', 16, 'normal'))
+                        break
+                    continue
+                elif i == '\n':
+                    if pila[-1] == 'z0':
+                        print(f"<q4, \ n, {pila[::-1]}>")
+                        a.write(f"<q4, \ n, {pila[::-1]}>\n")
+                        print("Se ha llegado a z0, la cadena es correcta!")
+                        time.sleep(1)
+                        t2.clear()
+                        t2.up()
+                        t2.goto(50, 45)
+                        t2.down()
+                        t2.write(cadena[index:], font=('Arial', 16, 'normal'))
+
+                        time.sleep(1)
+                        t3.clear()
+                        t3.up()
+                        t3.goto(50, -195)
+                        t3.down()
+                        t3.write(pila[::-1], font=('Arial', 16, 'normal'))
+                    else:
+                        print("Se terminó la cadena pero la pila sigue con algo, por lo tanto la cadena que ingresó no es valida y no las reglas {0^n 1^n | n >= 1}")
+                    break #Se termina el ciclo ya que se terminó de leer la cadena
+            # print(f"La cadena es: {cadena}")
+            a.close()
+            turtle.exitonclick()
+        else: 
+            for index, i in enumerate(cadena): 
+                counter = counter + 1
+                if i == '0':
+                    pila.append('0')
+                    print(f"<q2, {cadena[index:-1]}, {pila[::-1]}>")
+                    a.write(f"<q2, {cadena[index:-1]}, {pila[::-1]}>\n")
+                    continue
+                elif i == '1':
+                    if pila[-1] == '0':
+                        pila.pop()
+                        print(f"<q3, {cadena[index:-1]}, {pila[::-1]}>")
+                        a.write(f"<q3, {cadena[index:-1]}, {pila[::-1]}>\n")
+                    elif pila[-1] == 'z0' and i == '1':
+                        print(f"<q3, {cadena[index:-1]}, {pila[::-1]}>")
+                        a.write(f"<q3, {cadena[index:-1]}, {pila[::-1]}>\n")
+                        print("Se terminó la cadena pero la pila sigue con algo, por lo tanto la cadena que ingresó no es valida y no las reglas {0^n 1^n | n >= 1}")
+                        break
+                    continue
+                elif i == '\n':
+                    if pila[-1] == 'z0':
+                        print(f"<q4, \ n, {pila[::-1]}>")
+                        a.write(f"<q4, \ n, {pila[::-1]}>\n")
+                        print("Se ha llegado a z0, la cadena es correcta!")
+                    else:
+                        print("Se terminó la cadena pero la pila sigue con algo, por lo tanto la cadena que ingresó no es valida y no las reglas {0^n 1^n | n >= 1}")
+                    break #Se termina el ciclo ya que se terminó de leer la cadena
+            # print(f"La cadena es: {cadena}")
+            a.close()
 
 def generacion():
     cadena = "" #Donde se guardará la cadena aleatoria
-    numeroAleatorio = randint(1, 100000) #Mayor a uno
+    numeroAleatorio = randint(1, 10) #Mayor a uno
     numeroAleatorioMitad = numeroAleatorio // 2
     for i in range(1, numeroAleatorioMitad + 1): #Numero de cadenas a generar
         if numeroAleatorio == 1:
