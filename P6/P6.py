@@ -19,7 +19,7 @@ import time
 def automata():
     cadena = "" #Donde se guardará la cadena
     pila = ['z0'] #La pila del automata, inicializada con el ultimo elemento, para saber si se alcanzó el final de la pila
-    a = open("Programa5_DescripcionesInstantaneas.txt", "w", encoding="utf-8")
+    a = open("Programa6_DescripcionesInstantaneas.txt", "w", encoding="utf-8")
     counter = 0
 
     print("Bienvenidx al automata de pila")
@@ -53,7 +53,7 @@ def automata():
                     a.write(f"<q4, \ n, {pila[::-1]}>\n")
                     print("Se ha llegado a z0, la cadena es correcta!")
                     if len(cadena) <= 10:
-                        print("Aquí irá la graficación")
+                        graficacion(cadena)
                     else:
                         print("La cadena es mayor a 10 caracteres, así que no hay graficación")
                 else:
@@ -62,9 +62,12 @@ def automata():
         # print(f"La cadena es: {cadena}")
         a.close()
 
+def graficacion(cadena):
+    print("Hola graficacion")
+
 def generacion():
     cadena = "" #Donde se guardará la cadena aleatoria
-    numeroAleatorio = randint(1, 1000) #Mayor a uno
+    numeroAleatorio = randint(1, 100000) #Mayor a uno
     numeroAleatorioMitad = numeroAleatorio // 2
     for i in range(1, numeroAleatorioMitad + 1): #Numero de cadenas a generar
         if numeroAleatorio == 1:
