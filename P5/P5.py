@@ -19,7 +19,9 @@ import time
 def automata():
     cadena = "" #Donde se guardará la cadena
     pila = ['z0'] #La pila del automata, inicializada con el ultimo elemento, para saber si se alcanzó el final de la pila
-   
+    a = open("Programa5_DescripcionesInstantaneas.txt", "w", encoding="utf-8")
+    counter = 0
+
     print("Bienvenidx al automata de pila")
     print("El lenguaje del automata es {0^n 1^n | n >= 1}")
     #Se manda a generar la cadena con restricciones para poder operarla aquí
@@ -27,30 +29,42 @@ def automata():
     if cadena == False:
         print("Se termina el programa")
     else:
-        for i in cadena: 
+        for index, i in enumerate(cadena): 
+            counter = counter + 1
             if i == '0':
                 pila.append('0')
+                print(f"<q2, {cadena[index:-1]}, {pila[::-1]}>")
+                a.write(f"<q2, {cadena[index:-1]}, {pila[::-1]}>\n")
                 continue
             elif i == '1':
                 if pila[-1] == '0':
                     pila.pop()
+                    print(f"<q3, {cadena[index:-1]}, {pila[::-1]}>")
+                    a.write(f"<q3, {cadena[index:-1]}, {pila[::-1]}>\n")
                 elif pila[-1] == 'z0' and i == '1':
-                    print("Se terminó la cadena pero la pila sigue con algo, por lo tanto la cadena que ingresó no es valida y no sigue al lenguaje {0^n 1^n | n >= 1}")
+                    print(f"<q3, {cadena[index:-1]}, {pila[::-1]}>")
+                    a.write(f"<q3, {cadena[index:-1]}, {pila[::-1]}>\n")
+                    print("Se terminó la cadena pero la pila sigue con algo, por lo tanto la cadena que ingresó no es valida y no las reglas {0^n 1^n | n >= 1}")
                     break
                 continue
             elif i == '\n':
                 if pila[-1] == 'z0':
+                    print(f"<q4, \ n, {pila[::-1]}>")
+                    a.write(f"<q4, \ n, {pila[::-1]}>\n")
                     print("Se ha llegado a z0, la cadena es correcta!")
+                    if len(cadena) <= 10:
+                        print("Aquí irá la graficación")
+                    else:
+                        print("La cadena es mayor a 10 caracteres, así que no hay graficación")
+                else:
+                    print("Se terminó la cadena pero la pila sigue con algo, por lo tanto la cadena que ingresó no es valida y no las reglas {0^n 1^n | n >= 1}")
                 break #Se termina el ciclo ya que se terminó de leer la cadena
-        if len(cadena) <= 10:
-            print("Si se puede graficar")
-        else:
-            print("La cadena es mayor a 10 caracteres, así que no hay graficación")
         # print(f"La cadena es: {cadena}")
+        a.close()
 
 def generacion():
     cadena = "" #Donde se guardará la cadena aleatoria
-    numeroAleatorio = randint(1, 100001) #Mayor a uno
+    numeroAleatorio = randint(1, 1000) #Mayor a uno
     numeroAleatorioMitad = numeroAleatorio // 2
     for i in range(1, numeroAleatorioMitad + 1): #Numero de cadenas a generar
         if numeroAleatorio == 1:
@@ -94,6 +108,7 @@ def proceso():
                     return False
     else:
         print("Ingrese un numero correcto")
+        return False
 
 def validacionDeCadena(cadena):
     counterizq = 0
