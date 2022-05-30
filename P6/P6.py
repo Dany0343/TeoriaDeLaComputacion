@@ -185,15 +185,17 @@ def automata():
 
 def generacion():
     cadena = "" #Donde se guardará la cadena aleatoria
-    numeroAleatorio = randint(1, 10) #Mayor a uno
+    numeroAleatorio = randint(1, 100000) #Mayor a uno
     numeroAleatorioMitad = numeroAleatorio // 2
-    for i in range(1, numeroAleatorioMitad + 1): #Numero de cadenas a generar
-        if numeroAleatorio == 1:
+    if numeroAleatorio == 1:
             cadena = cadena + '0'
-        cadena = cadena + '0'
-    for i in range(numeroAleatorioMitad, numeroAleatorio):
-        if numeroAleatorio == 1:
             cadena = cadena + '1'
+            cadena = cadena + '\n'
+            return cadena
+    for i in range(1, numeroAleatorioMitad + 1): #Numero de cadenas a generar
+        cadena = cadena + '0'
+    i = 0
+    for i in range(numeroAleatorioMitad, numeroAleatorio):
         cadena = cadena + '1'
         if i == numeroAleatorio - 1:
             cadena = cadena + '\n'
