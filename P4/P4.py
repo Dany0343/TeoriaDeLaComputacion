@@ -2,10 +2,10 @@
 import random
 from random import randint
 import time
-# from automata.fa.dfa import DFA
-# from visual_automata.fa.dfa import VisualDFA
-# from automata.fa.nfa import NFA
-# from visual_automata.fa.nfa import VisualNFA
+from automata.fa.dfa import DFA
+from visual_automata.fa.dfa import VisualDFA
+from automata.fa.nfa import NFA
+from visual_automata.fa.nfa import VisualNFA
 
 # Programar el autómata finito determinístico que reconozca las palabras:
 
