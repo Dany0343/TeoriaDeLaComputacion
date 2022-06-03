@@ -15,11 +15,11 @@ def generacion():
     numeroAleatorio = randint(2, 50) #Con este numero se sabrá la longitud total de la cadena a generar
     print(f"El numero aleatorio resultante es: {numeroAleatorio}")
     suma = 0
-    while suma != numeroAleatorio:
-        n = randint(1 , 50)
+    while suma != numeroAleatorio - 3:
+        n = randint(1, 50)
         m = randint(1, 50)
         suma = n + m
-        if suma == numeroAleatorio:
+        if suma == numeroAleatorio - 3:
             break
         else: 
             continue
@@ -42,13 +42,10 @@ def revision(cadena):
     longitudCadena = len(cadena)
     if len(cadena) <= 10:
         #Tortugas fijas
-        t = turtle.Turtle()
-        t2 = turtle.Turtle()
-        t3 = turtle.Turtle()
-        #Tortugas dinamicas
-        td = []
-        for i in range(0, longitudCadena):
-            td.append(turtle.Turtle())
+        t = turtle.Turtle() #Es para generar la cuadricula inicial
+        t2 = turtle.Turtle() #Generar el cabezal
+        t3 = turtle.Turtle() #Generar los cuadros nuevos
+        t4 = turtle.Turtle() #Cambiar el texto
         
         turtle.title("Maquina de Turing")
         coordenadasX = 0 #Para setear la cinta en 0 de X
@@ -58,7 +55,7 @@ def revision(cadena):
         t.down()
         #Generación de la cuadricula o tape (cinta)
         for i in range(0, longitudCadena): 
-            t.speed(10)
+            t.speed(0)
             t.forward(50)
             t.right(90)
             t.forward(50)
@@ -75,6 +72,7 @@ def revision(cadena):
 
         #Generacion de cabezal
         t2.up()
+        t2.speed(0)
         t2.goto(0,100)
         t2.down()
         t2.forward(50)
@@ -99,11 +97,11 @@ def revision(cadena):
         #Metiendo la cadena en la cinta
         ejeXCinta = 25
         for i in range(0, longitudCadena):
-            td[i].up()
-            td[i].goto(ejeXCinta, -35)
-            td[i].down()
-            td[i].write(f'{cadena[i]}', align="center", font=('Arial', 16, 'bold'))
-            td[i].hideturtle()
+            t4.up()
+            t4.goto(ejeXCinta, -35)
+            t4.down()
+            t4.write(f'{cadena[i]}', align="center", font=('Arial', 16, 'bold'))
+            t4.hideturtle()
             ejeXCinta = ejeXCinta + 50
 
         while(True):
@@ -113,7 +111,9 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
                     t2.up()
+                    t2.speed(0)
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
                     t2.forward(50)
@@ -137,24 +137,25 @@ def revision(cadena):
                     t2.hideturtle()
                     time.sleep(1)
                     #Cambio de simbolo
-                    td[posicionCadena].clear()
-                    td.append(turtle.Turtle())
-                    td[-1].up()
+                    t4.up()
                     if posicionCadena == 0:
-                        td[-1].goto(25, -35)
-                        td[-1].down()
-                        td[-1].write('X', align="center", font=('Arial', 16, 'bold'))
-                        td[-1].hideturtle()
+                        t4.goto(25, -35)
+                        limpiar(25, -35)
+                        t4.down()
+                        t4.write('X', align="center", font=('Arial', 16, 'bold'))
+                        t4.hideturtle()
                     else:
-                        td[-1].goto(posicionCadena * 25, -35)
-                        td[-1].down()
-                        td[-1].write('X', align="center", font=('Arial', 16, 'bold'))
-                        td[-1].hideturtle()
+                        t4.goto(posicionCadena * 50 + 25, -35)
+                        limpiar(posicionCadena * 50 + 25, -35)
+                        t4.down()
+                        t4.write('X', align="center", font=('Arial', 16, 'bold'))
+                        t4.hideturtle()
     
                     posicionCadena = posicionCadena + 1 
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
                         t3.up()
+                        t3.hideturtle()
                         t3.setheading(360)
                         t3.goto(coordenadasX, 0)
                         t3.down()
@@ -165,13 +166,17 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
                 elif cadena[posicionCadena] == '*' and estado == 2:
                     #Graficacion en este punto del computo
-                    print(posicionCadena)
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50,100)
                     t2.right(0)
@@ -211,6 +216,9 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
 
@@ -218,6 +226,8 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
@@ -255,6 +265,9 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
 
@@ -263,6 +276,8 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
@@ -288,19 +303,19 @@ def revision(cadena):
                     time.sleep(1)
 
                     #Cambio de simbolo
-                    td[posicionCadena].clear()
-                    td.append(turtle.Turtle())
-                    td[-1].up()
+                    t4.up()
                     if posicionCadena == 0:
-                        td[-1].goto(25, -35)
-                        td[-1].down()
-                        td[-1].write('X', align="center", font=('Arial', 16, 'bold'))
-                        td[-1].hideturtle()
+                        t4.goto(25, -35)
+                        limpiar(25, -35)
+                        t4.down()
+                        t4.write('X', align="center", font=('Arial', 16, 'bold'))
+                        t4.hideturtle()
                     else:
-                        td[-1].goto(posicionCadena * 50 + 25, -35)
-                        td[-1].down()
-                        td[-1].write('X', align="center", font=('Arial', 16, 'bold'))
-                        td[-1].hideturtle()
+                        t4.goto(posicionCadena * 50 + 25, -35)
+                        limpiar(posicionCadena * 50 + 25, -35)
+                        t4.down()
+                        t4.write('X', align="center", font=('Arial', 16, 'bold'))
+                        t4.hideturtle()                       
                     posicionCadena = posicionCadena - 1
                     estado = 4
                     if posicionCadena > len(cadena) - 1:
@@ -316,6 +331,9 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
 
@@ -323,6 +341,8 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
@@ -360,6 +380,9 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
 
@@ -367,6 +390,8 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
@@ -404,6 +429,9 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
 
@@ -413,6 +441,8 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
@@ -438,19 +468,20 @@ def revision(cadena):
                     time.sleep(1)
 
                     #Cambio de simbolo
-                    td[posicionCadena].clear()
-                    td.append(turtle.Turtle())
-                    td[-1].up()
+                    t4.up()
                     if posicionCadena == 0:
-                        td[-1].goto(25, -35)
-                        td[-1].down()
-                        td[-1].write('a', align="center", font=('Arial', 16, 'bold'))
-                        td[-1].hideturtle()
+                        t4.goto(25, -35)
+                        limpiar(25, -35)
+                        t4.down()
+                        t4.write('a', align="center", font=('Arial', 16, 'bold'))
+                        t4.hideturtle()
                     else:
-                        td[-1].goto(posicionCadena * 50 + 25, -35)
-                        td[-1].down()
-                        td[-1].write('a', align="center", font=('Arial', 16, 'bold'))
-                        td[-1].hideturtle()
+                        t4.goto(posicionCadena * 50 + 25, -35)
+                        limpiar(posicionCadena * 50 + 25, -35)
+                        t4.down()
+                        t4.write('a', align="center", font=('Arial', 16, 'bold'))
+                        t4.hideturtle()
+                    
                     posicionCadena = posicionCadena + 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -465,6 +496,9 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
 
@@ -473,6 +507,8 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
@@ -510,6 +546,9 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
 
@@ -519,6 +558,7 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
@@ -544,19 +584,20 @@ def revision(cadena):
                     time.sleep(1)
 
                     #Cambio de simbolo
-                    td[posicionCadena].clear()
-                    td.append(turtle.Turtle())
-                    td[-1].up()
+                    t4.up()
                     if posicionCadena == 0:
-                        td[-1].goto(25, -35)
-                        td[-1].down()
-                        td[-1].write('|', align="center", font=('Arial', 16, 'bold'))
-                        td[-1].hideturtle()
+                        t4.goto(25, -35)
+                        limpiar(25, -35)
+                        t4.down()
+                        t4.write('|', align="center", font=('Arial', 16, 'bold'))
+                        t4.hideturtle()
                     else:
-                        td[-1].goto(posicionCadena * 50 + 25, -35)
-                        td[-1].down()
-                        td[-1].write('|', align="center", font=('Arial', 16, 'bold'))
-                        td[-1].hideturtle()
+                        t4.goto(posicionCadena * 50 + 25, -35)
+                        limpiar(posicionCadena * 50 + 25, -35)
+                        t4.down()
+                        t4.write('|', align="center", font=('Arial', 16, 'bold'))
+                        t4.hideturtle()
+                    
                     posicionCadena = posicionCadena - 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -571,6 +612,9 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
 
@@ -578,6 +622,7 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
@@ -615,6 +660,9 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
 
@@ -622,6 +670,7 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
@@ -659,6 +708,9 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
 
@@ -666,6 +718,7 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
@@ -693,6 +746,7 @@ def revision(cadena):
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
                         t3.up()
+                        t3.hideturtle()
                         t3.setheading(360)
                         t3.goto(coordenadasX, 0)
                         t3.down()
@@ -703,6 +757,9 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
 
@@ -710,6 +767,7 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
@@ -747,6 +805,9 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
 
@@ -754,6 +815,7 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
@@ -791,6 +853,9 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
 
@@ -800,6 +865,7 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
@@ -825,19 +891,20 @@ def revision(cadena):
                     time.sleep(1)
 
                     #Cambio de simbolo
-                    td[posicionCadena].clear()
-                    td.append(turtle.Turtle())
-                    td[-1].up()
+                    t4.up()
                     if posicionCadena == 0:
-                        td[-1].goto(25, -35)
-                        td[-1].down()
-                        td[-1].write('|', align="center", font=('Arial', 16, 'bold'))
-                        td[-1].hideturtle()
+                        t4.goto(25, -35)
+                        limpiar(25, -35)
+                        t4.down()
+                        t4.write('|', align="center", font=('Arial', 16, 'bold'))
+                        t4.hideturtle()
                     else:
-                        td[-1].goto(posicionCadena * 50 + 25, -35)
-                        td[-1].down()
-                        td[-1].write('|', align="center", font=('Arial', 16, 'bold'))
-                        td[-1].hideturtle()
+                        t4.goto(posicionCadena * 50 + 25, -35)
+                        limpiar(posicionCadena * 50 + 25, -35)
+                        t4.down()
+                        t4.write('|', align="center", font=('Arial', 16, 'bold'))
+                        t4.hideturtle()
+
                     posicionCadena = posicionCadena - 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -852,6 +919,9 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
 
@@ -859,6 +929,7 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
@@ -896,6 +967,9 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
 
@@ -903,6 +977,7 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
@@ -941,6 +1016,9 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
 
@@ -948,6 +1026,7 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
@@ -985,6 +1064,9 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
 
@@ -993,6 +1075,7 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
@@ -1016,20 +1099,22 @@ def revision(cadena):
                     t2.write('q', align="center", font=('Arial', 16, 'normal'))
                     t2.hideturtle()
                     time.sleep(1)
+                    
                     #Cambio de simbolo
-                    td[posicionCadena].clear()
-                    td.append(turtle.Turtle())
-                    td[-1].up()
+                    t4.up()
                     if posicionCadena == 0:
-                        td[-1].goto(25, -35)
-                        td[-1].down()
-                        td[-1].write('*', align="center", font=('Arial', 16, 'bold'))
-                        td[-1].hideturtle()
+                        t4.goto(25, -35)
+                        limpiar(25, -35)
+                        t4.down()
+                        t4.write('*', align="center", font=('Arial', 16, 'bold'))
+                        t4.hideturtle()
                     else:
-                        td[-1].goto(posicionCadena * 50 + 25, -35)
-                        td[-1].down()
-                        td[-1].write('*', align="center", font=('Arial', 16, 'bold'))
-                        td[-1].hideturtle()
+                        t4.goto(posicionCadena * 50 + 25, -35)
+                        limpiar(posicionCadena * 50 + 25, -35)
+                        t4.down()
+                        t4.write('*', align="center", font=('Arial', 16, 'bold'))
+                        t4.hideturtle()
+
                     posicionCadena = posicionCadena - 1
                     estado = 9
                     if posicionCadena > len(cadena) - 1:
@@ -1045,6 +1130,9 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
 
@@ -1052,6 +1140,7 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
@@ -1089,6 +1178,9 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
 
@@ -1097,6 +1189,7 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
@@ -1120,21 +1213,21 @@ def revision(cadena):
                     t2.write('q', align="center", font=('Arial', 16, 'normal'))
                     t2.hideturtle()
                     time.sleep(1)
-
+                    
                     #Cambio de simbolo
-                    td[posicionCadena].clear()
-                    td.append(turtle.Turtle())
-                    td[-1].up()
+                    t4.up()
                     if posicionCadena == 0:
-                        td[-1].goto(25, -35)
-                        td[-1].down()
-                        td[-1].write('*', align="center", font=('Arial', 16, 'bold'))
-                        td[-1].hideturtle()
+                        t4.goto(25, -35)
+                        limpiar(25, -35)
+                        t4.down()
+                        t4.write('*', align="center", font=('Arial', 16, 'bold'))
+                        t4.hideturtle()
                     else:
-                        td[-1].goto(posicionCadena * 50 + 25, -35)
-                        td[-1].down()
-                        td[-1].write('*', align="center", font=('Arial', 16, 'bold'))
-                        td[-1].hideturtle()
+                        t4.goto(posicionCadena * 50 + 25, -35)
+                        limpiar(posicionCadena * 50 + 25, -35)
+                        t4.down()
+                        t4.write('*', align="center", font=('Arial', 16, 'bold'))
+                        t4.hideturtle()
                     posicionCadena = posicionCadena + 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -1149,6 +1242,9 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
 
@@ -1156,6 +1252,7 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
@@ -1193,6 +1290,9 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
 
@@ -1200,6 +1300,7 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
@@ -1237,6 +1338,9 @@ def revision(cadena):
                         t3.forward(50)
                         t3.right(90)
                         t3.forward(50)
+                        t3.up()
+                        t3.goto(posicionCadena * 50 + 25, -35)
+                        t3.write('_', align="center", font=('Arial', 16, 'bold'))
                         coordenadasX = coordenadasX + 50
                     continue
                 #Estados para salir del bucle infinito
@@ -1272,6 +1376,7 @@ def revision(cadena):
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
+                    t2.speed(0)
                     t2.up()
                     t2.goto(posicionCadena * 50, 100)
                     t2.down()
@@ -1297,19 +1402,20 @@ def revision(cadena):
                     time.sleep(1)
 
                     #Cambio de simbolo
-                    td[posicionCadena].clear()
-                    td.append(turtle.Turtle())
-                    td[-1].up()
+                    t4.up()
                     if posicionCadena == 0:
-                        td[-1].goto(25, -35)
-                        td[-1].down()
-                        td[-1].write('*', align="center", font=('Arial', 16, 'bold'))
-                        td[-1].hideturtle()
+                        t4.goto(25, -35)
+                        limpiar(25, -35)
+                        t4.down()
+                        t4.write('*', align="center", font=('Arial', 16, 'bold'))
+                        t4.hideturtle()
                     else:
-                        td[-1].goto(posicionCadena * 50 + 25, -35)
-                        td[-1].down()
-                        td[-1].write('*', align="center", font=('Arial', 16, 'bold'))
-                        td[-1].hideturtle()
+                        t4.goto(posicionCadena * 50 + 25, -35)
+                        limpiar(posicionCadena * 50 + 25, -35)
+                        t4.down()
+                        t4.write('*', align="center", font=('Arial', 16, 'bold'))
+                        t4.hideturtle()
+
                     print("La cadena llegó al estado HALTED, concluyo satisfactoriamente. Se para la computación")
                     print(f"La cadena final es: {cadena}")
                     break
@@ -1503,6 +1609,22 @@ def revision(cadena):
                 print(f"La cadena final es: {cadena}")
                 break
     a.close()
+
+def limpiar(x,y):
+    t5 = turtle.Turtle() #Cambiar el texto
+    t5.hideturtle()
+    t5.speed(0)
+    t5.up()
+    x = x - 15
+    y = y + 25
+    t5.goto(x,y)
+    t5.color("white", "white")
+    t5.down()
+    t5.begin_fill()
+    for i in range(4):
+        t5.forward(25)
+        t5.right(90)
+    t5.end_fill()
 
 def maquina():
     print("Bienvenido a una prueba de la pedagogical universal Turing machine, que disfrute su estancia.")
