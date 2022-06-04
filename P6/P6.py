@@ -76,7 +76,7 @@ def automata():
                 if i == '0':
                     pila.append('0')
                     print(f"<q2, {cadena[index:-1]}, {pila[::-1]}>")
-                    a.write(f"<q2, {cadena[index:-1]}, {pila[::-1]}>\n")
+                    a.write(f"<q2, {cadena[index:-1]}, {pila[::-1]}>|-\n")
                     time.sleep(1)
                     t2.clear()
                     t2.up()
@@ -96,7 +96,7 @@ def automata():
                     if pila[-1] == '0':
                         pila.pop()
                         print(f"<q3, {cadena[index:-1]}, {pila[::-1]}>")
-                        a.write(f"<q3, {cadena[index:-1]}, {pila[::-1]}>\n")
+                        a.write(f"<q3, {cadena[index:-1]}, {pila[::-1]}>|-\n")
                         time.sleep(1)
                         t2.clear()
                         t2.up()
@@ -112,7 +112,7 @@ def automata():
                         t3.write(pila[::-1], font=('Arial', 16, 'normal'))
                     elif pila[-1] == 'z0' and i == '1':
                         print(f"<q3, {cadena[index:-1]}, {pila[::-1]}>")
-                        a.write(f"<q3, {cadena[index:-1]}, {pila[::-1]}>\n")
+                        a.write(f"<q3, {cadena[index:-1]}, {pila[::-1]}>|-\n")
                         print("Se terminó la cadena pero la pila sigue con algo, por lo tanto la cadena que ingresó no es valida y no las reglas {0^n 1^n | n >= 1}")
                         time.sleep(1)
                         t2.clear()
@@ -159,16 +159,16 @@ def automata():
                 if i == '0':
                     pila.append('0')
                     print(f"<q2, {cadena[index:-1]}, {pila[::-1]}>")
-                    a.write(f"<q2, {cadena[index:-1]}, {pila[::-1]}>\n")
+                    a.write(f"<q2, {cadena[index:-1]}, {pila[::-1]}>|-\n")
                     continue
                 elif i == '1':
                     if pila[-1] == '0':
                         pila.pop()
                         print(f"<q3, {cadena[index:-1]}, {pila[::-1]}>")
-                        a.write(f"<q3, {cadena[index:-1]}, {pila[::-1]}>\n")
+                        a.write(f"<q3, {cadena[index:-1]}, {pila[::-1]}>|-\n")
                     elif pila[-1] == 'z0' and i == '1':
                         print(f"<q3, {cadena[index:-1]}, {pila[::-1]}>")
-                        a.write(f"<q3, {cadena[index:-1]}, {pila[::-1]}>\n")
+                        a.write(f"<q3, {cadena[index:-1]}, {pila[::-1]}>|-\n")
                         print("Se terminó la cadena pero la pila sigue con algo, por lo tanto la cadena que ingresó no es valida y no las reglas {0^n 1^n | n >= 1}")
                         break
                     continue

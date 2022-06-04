@@ -7,6 +7,7 @@ from random import randint
 import string
 import time
 import turtle
+
 # 1. La máquina se tiene que animar para cadenas pequeñas (menor igual a 10 caracteres).
 # 2. Puede recibir la cadena por parte del usuario o aleatoriamente con un máximo de 50 caracteres.
 # 3. Mandar la salida a un archivo de texto que muestre las descripciones instantáneas (IDs) por renglón en cada iteración.
@@ -73,7 +74,6 @@ def revision(cadena):
             t.goto(coordenadasX,0)
             t.down()
         t.hideturtle()
-
         #Generacion de cabezal
         t2.up()
         t2.speed(0)
@@ -112,6 +112,7 @@ def revision(cadena):
                 if cadena[posicionCadena] == '*' and estado == 1:
                     estado = 2
                     cadena[posicionCadena] = 'X'
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     #Graficacion en este punto del computo
                     t2.clear()
                     t2.reset()
@@ -207,6 +208,7 @@ def revision(cadena):
                     time.sleep(1)
                     posicionCadena = posicionCadena + 1
                     estado = 3
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
                         t3.up()
@@ -228,7 +230,9 @@ def revision(cadena):
 
                 elif cadena[posicionCadena] == '|' and estado == 2:
                     cabezal(t2, posicionCadena)
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     posicionCadena = posicionCadena + 1
+                    a.write(f"{cadena[:posicionCadena]}{estado}{cadena[posicionCadena:]}|-")
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
                         t3.up()
@@ -250,6 +254,7 @@ def revision(cadena):
 
                 elif cadena[posicionCadena] == '*' and estado == 3:
                     cadena[posicionCadena] = 'X'
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     cabezal(t2, posicionCadena)
                     #Cambio de simbolo
                     t4.up()
@@ -288,6 +293,7 @@ def revision(cadena):
 
                 elif cadena[posicionCadena] == '|' and estado == 3:
                     cabezal(t2, posicionCadena)
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     posicionCadena = posicionCadena + 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -310,6 +316,7 @@ def revision(cadena):
 
                 elif cadena[posicionCadena] == '*' and estado == 4:
                     cabezal(t2, posicionCadena)
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     posicionCadena = posicionCadena - 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -333,8 +340,8 @@ def revision(cadena):
                 elif cadena[posicionCadena] == '|' and estado == 4:
                     estado = 5
                     cadena[posicionCadena] = 'a'
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     cabezal(t2, posicionCadena)
-
                     #Cambio de simbolo
                     t4.up()
                     if posicionCadena == 0:
@@ -373,6 +380,7 @@ def revision(cadena):
                 elif cadena[posicionCadena] == 'X' and estado == 4:
                     estado = 7
                     cabezal(t2, posicionCadena)
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     posicionCadena = posicionCadena + 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -396,6 +404,7 @@ def revision(cadena):
                 elif cadena[posicionCadena] == '_' and estado == 5:
                     estado = 6
                     cadena[posicionCadena] = '|'
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     cabezal(t2, posicionCadena)
                     #Cambio de simbolo
                     t4.up()
@@ -434,6 +443,7 @@ def revision(cadena):
 
                 elif cadena[posicionCadena] == '*' and estado == 5:
                     cabezal(t2, posicionCadena)
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     posicionCadena = posicionCadena + 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -456,6 +466,7 @@ def revision(cadena):
 
                 elif cadena[posicionCadena] == '|' and estado == 5:
                     cabezal(t2, posicionCadena)
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     posicionCadena = posicionCadena + 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -478,6 +489,7 @@ def revision(cadena):
 
                 elif cadena[posicionCadena] == 'X' and estado == 5:
                     cabezal(t2, posicionCadena)
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     posicionCadena = posicionCadena + 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -501,6 +513,7 @@ def revision(cadena):
 
                 elif cadena[posicionCadena] == '*' and estado == 6:
                     cabezal(t2, posicionCadena)
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     posicionCadena = posicionCadena - 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -523,6 +536,7 @@ def revision(cadena):
 
                 elif cadena[posicionCadena] == '|' and estado == 6:
                     cabezal(t2, posicionCadena)
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     posicionCadena = posicionCadena - 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -546,6 +560,7 @@ def revision(cadena):
                 elif cadena[posicionCadena] == 'a' and estado == 6:
                     estado = 4
                     cadena[posicionCadena] = '|'
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     cabezal(t2, posicionCadena)
                     #Cambio de simbolo
                     t4.up()
@@ -584,6 +599,7 @@ def revision(cadena):
 
                 elif cadena[posicionCadena] == 'X' and estado == 6:
                     cabezal(t2, posicionCadena)
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     posicionCadena = posicionCadena - 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -606,6 +622,7 @@ def revision(cadena):
 
                 elif cadena[posicionCadena] == '*' and estado == 7:
                     cabezal(t2, posicionCadena)
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     posicionCadena = posicionCadena + 1
                     estado = 8
                     if posicionCadena > len(cadena) - 1:
@@ -629,6 +646,7 @@ def revision(cadena):
 
                 elif cadena[posicionCadena] == '|' and estado == 7:
                     cabezal(t2, posicionCadena)
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     posicionCadena = posicionCadena + 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -651,6 +669,7 @@ def revision(cadena):
 
                 elif cadena[posicionCadena] == '_' and estado == 8:
                     cadena[posicionCadena] = '*'
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     cabezal(t2, posicionCadena)
                     #Cambio de simbolo
                     t4.up()
@@ -690,6 +709,7 @@ def revision(cadena):
 
                 elif cadena[posicionCadena] == '|' and estado == 8:
                     cabezal(t2, posicionCadena)
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     posicionCadena = posicionCadena + 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -712,6 +732,7 @@ def revision(cadena):
 
                 elif cadena[posicionCadena] == 'X' and estado == 8:
                     cadena[posicionCadena] = '*'
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     cabezal(t2, posicionCadena)
                     #Cambio de simbolo
                     t4.up()
@@ -749,6 +770,7 @@ def revision(cadena):
 
                 elif cadena[posicionCadena] == '*' and estado == 9:
                     cabezal(t2, posicionCadena)
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     posicionCadena = posicionCadena - 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -771,6 +793,7 @@ def revision(cadena):
 
                 elif cadena[posicionCadena] == '|' and estado == 9:
                     cabezal(t2, posicionCadena)
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     posicionCadena = posicionCadena - 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -820,6 +843,7 @@ def revision(cadena):
                     break
                 elif cadena[posicionCadena] == 'X' and estado == 9:
                     cadena[posicionCadena] = '*'
+                    a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     cabezal(t2, posicionCadena)
                     #Cambio de simbolo
                     t4.up()
@@ -840,17 +864,21 @@ def revision(cadena):
                     print(f"La cadena final es: {cadena}")
                     break
         turtle.exitonclick()
+        a.close()
     else:
         print("La cadena es mayor o igual a 10, no se grafica")
+        a = open("Programa7_DescripcionesInstantaneas.txt", "w", encoding="utf-8")
         while(True):
             if cadena[posicionCadena] == '*' and estado == 1:
                 estado = 2
                 cadena[posicionCadena] = 'X'
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena + 1 
                 if posicionCadena > len(cadena) - 1:
                     cadena.append("_")
                 continue
             elif cadena[posicionCadena] == '*' and estado == 2:
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena + 1
                 estado = 3
                 if posicionCadena > len(cadena) - 1:
@@ -858,6 +886,7 @@ def revision(cadena):
                 continue
 
             elif cadena[posicionCadena] == '|' and estado == 2:
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena + 1
                 if posicionCadena > len(cadena) - 1:
                     cadena.append("_")
@@ -865,6 +894,7 @@ def revision(cadena):
 
             elif cadena[posicionCadena] == '*' and estado == 3:
                 cadena[posicionCadena] = 'X'
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena - 1
                 estado = 4
                 if posicionCadena > len(cadena) - 1:
@@ -872,12 +902,14 @@ def revision(cadena):
                 continue
 
             elif cadena[posicionCadena] == '|' and estado == 3:
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena + 1
                 if posicionCadena > len(cadena) - 1:
                     cadena.append("_")
                 continue
 
             elif cadena[posicionCadena] == '*' and estado == 4:
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena - 1
                 if posicionCadena > len(cadena) - 1:
                     cadena.append("_")
@@ -886,6 +918,7 @@ def revision(cadena):
             elif cadena[posicionCadena] == '|' and estado == 4:
                 estado = 5
                 cadena[posicionCadena] = 'a'
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena + 1
                 if posicionCadena > len(cadena) - 1:
                     cadena.append("_")
@@ -893,6 +926,7 @@ def revision(cadena):
 
             elif cadena[posicionCadena] == 'X' and estado == 4:
                 estado = 7
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena + 1
                 if posicionCadena > len(cadena) - 1:
                     cadena.append("_")
@@ -901,36 +935,42 @@ def revision(cadena):
             elif cadena[posicionCadena] == '_' and estado == 5:
                 estado = 6
                 cadena[posicionCadena] = '|'
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena - 1
                 if posicionCadena > len(cadena) - 1:
                     cadena.append("_")
                 continue
 
             elif cadena[posicionCadena] == '*' and estado == 5:
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena + 1
                 if posicionCadena > len(cadena) - 1:
                     cadena.append("_")
                 continue
 
             elif cadena[posicionCadena] == '|' and estado == 5:
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena + 1
                 if posicionCadena > len(cadena) - 1:
                     cadena.append("_")
                 continue
 
             elif cadena[posicionCadena] == 'X' and estado == 5:
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena + 1
                 if posicionCadena > len(cadena) - 1:
                     cadena.append("_")
                 continue
 
             elif cadena[posicionCadena] == '*' and estado == 6:
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena - 1
                 if posicionCadena > len(cadena) - 1:
                     cadena.append("_")
                 continue
 
             elif cadena[posicionCadena] == '|' and estado == 6:
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena - 1
                 if posicionCadena > len(cadena) - 1:
                     cadena.append("_")
@@ -939,18 +979,21 @@ def revision(cadena):
             elif cadena[posicionCadena] == 'a' and estado == 6:
                 estado = 4
                 cadena[posicionCadena] = '|'
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena - 1
                 if posicionCadena > len(cadena) - 1:
                     cadena.append("_")
                 continue
 
             elif cadena[posicionCadena] == 'X' and estado == 6:
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena - 1
                 if posicionCadena > len(cadena) - 1:
                     cadena.append("_")
                 continue
 
             elif cadena[posicionCadena] == '*' and estado == 7:
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena + 1
                 estado = 8
                 if posicionCadena > len(cadena) - 1:
@@ -958,6 +1001,7 @@ def revision(cadena):
                 continue
 
             elif cadena[posicionCadena] == '|' and estado == 7:
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena + 1
                 if posicionCadena > len(cadena) - 1:
                     cadena.append("_")
@@ -965,6 +1009,7 @@ def revision(cadena):
 
             elif cadena[posicionCadena] == '_' and estado == 8:
                 cadena[posicionCadena] = '*'
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena - 1
                 estado = 9
                 if posicionCadena > len(cadena) - 1:
@@ -972,6 +1017,7 @@ def revision(cadena):
                 continue
 
             elif cadena[posicionCadena] == '|' and estado == 8:
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena + 1
                 if posicionCadena > len(cadena) - 1:
                     cadena.append("_")
@@ -979,18 +1025,21 @@ def revision(cadena):
 
             elif cadena[posicionCadena] == 'X' and estado == 8:
                 cadena[posicionCadena] = '*'
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena + 1
                 if posicionCadena > len(cadena) - 1:
                     cadena.append("_")
                 continue
 
             elif cadena[posicionCadena] == '*' and estado == 9:
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena - 1
                 if posicionCadena > len(cadena) - 1:
                     cadena.append("_")
                 continue
 
             elif cadena[posicionCadena] == '|' and estado == 9:
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 posicionCadena = posicionCadena - 1
                 if posicionCadena > len(cadena) - 1:
                     cadena.append("_")
@@ -1025,6 +1074,7 @@ def revision(cadena):
                 break
             elif cadena[posicionCadena] == 'X' and estado == 9:
                 cadena[posicionCadena] = '*'
+                a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                 print("La cadena llegó al estado HALTED, concluyo satisfactoriamente. Se para la computación")
                 print(f"La cadena final es: {cadena}")
                 break
