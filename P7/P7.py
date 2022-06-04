@@ -7,9 +7,13 @@ from random import randint
 import string
 import time
 import turtle
+# 1. La máquina se tiene que animar para cadenas pequeñas (menor igual a 10 caracteres).
+# 2. Puede recibir la cadena por parte del usuario o aleatoriamente con un máximo de 50 caracteres.
+# 3. Mandar la salida a un archivo de texto que muestre las descripciones instantáneas (IDs) por renglón en cada iteración.
+# 4. En el reporte deben de estar pantallas del programa en ejecución de todas las características solicitadas.
+# 5. En el reporte debe de estar también el código de la implementación en latex, no en imágenes.
 
 #Funciones
-
 def generacion():
     cadenaGenerada = ['*', '*', '*'] #Donde se guardará el conjunto de simbolos aleatorios generados
     numeroAleatorio = randint(2, 50) #Con este numero se sabrá la longitud total de la cadena a generar
@@ -223,34 +227,7 @@ def revision(cadena):
                     continue
 
                 elif cadena[posicionCadena] == '|' and estado == 2:
-                    #Graficacion en este punto del computo
-                    t2.clear()
-                    t2.reset()
-                    t2.speed(0)
-                    t2.speed(0)
-                    t2.up()
-                    t2.goto(posicionCadena * 50, 100)
-                    t2.down()
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    # flecha de abajo
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 50)
-                    t2.right(180)
-                    t2.down()
-                    t2.forward(30)
-                    #texto en el centro
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 70)
-                    t2.down()
-                    t2.write('q', align="center", font=('Arial', 16, 'normal'))
-                    t2.hideturtle()
-                    time.sleep(1)
+                    cabezal(t2, posicionCadena)
                     posicionCadena = posicionCadena + 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -273,35 +250,7 @@ def revision(cadena):
 
                 elif cadena[posicionCadena] == '*' and estado == 3:
                     cadena[posicionCadena] = 'X'
-                    #Graficacion en este punto del computo
-                    t2.clear()
-                    t2.reset()
-                    t2.speed(0)
-                    t2.speed(0)
-                    t2.up()
-                    t2.goto(posicionCadena * 50, 100)
-                    t2.down()
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    # flecha de abajo
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 50)
-                    t2.right(180)
-                    t2.down()
-                    t2.forward(30)
-                    #texto en el centro
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 70)
-                    t2.down()
-                    t2.write('q', align="center", font=('Arial', 16, 'normal'))
-                    t2.hideturtle()
-                    time.sleep(1)
-
+                    cabezal(t2, posicionCadena)
                     #Cambio de simbolo
                     t4.up()
                     if posicionCadena == 0:
@@ -338,34 +287,7 @@ def revision(cadena):
                     continue
 
                 elif cadena[posicionCadena] == '|' and estado == 3:
-                    #Graficacion en este punto del computo
-                    t2.clear()
-                    t2.reset()
-                    t2.speed(0)
-                    t2.speed(0)
-                    t2.up()
-                    t2.goto(posicionCadena * 50, 100)
-                    t2.down()
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    # flecha de abajo
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 50)
-                    t2.right(180)
-                    t2.down()
-                    t2.forward(30)
-                    #texto en el centro
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 70)
-                    t2.down()
-                    t2.write('q', align="center", font=('Arial', 16, 'normal'))
-                    t2.hideturtle()
-                    time.sleep(1)
+                    cabezal(t2, posicionCadena)
                     posicionCadena = posicionCadena + 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -387,34 +309,7 @@ def revision(cadena):
                     continue
 
                 elif cadena[posicionCadena] == '*' and estado == 4:
-                    #Graficacion en este punto del computo
-                    t2.clear()
-                    t2.reset()
-                    t2.speed(0)
-                    t2.speed(0)
-                    t2.up()
-                    t2.goto(posicionCadena * 50, 100)
-                    t2.down()
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    # flecha de abajo
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 50)
-                    t2.right(180)
-                    t2.down()
-                    t2.forward(30)
-                    #texto en el centro
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 70)
-                    t2.down()
-                    t2.write('q', align="center", font=('Arial', 16, 'normal'))
-                    t2.hideturtle()
-                    time.sleep(1)
+                    cabezal(t2, posicionCadena)
                     posicionCadena = posicionCadena - 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -438,34 +333,7 @@ def revision(cadena):
                 elif cadena[posicionCadena] == '|' and estado == 4:
                     estado = 5
                     cadena[posicionCadena] = 'a'
-                    #Graficacion en este punto del computo
-                    t2.clear()
-                    t2.reset()
-                    t2.speed(0)
-                    t2.speed(0)
-                    t2.up()
-                    t2.goto(posicionCadena * 50, 100)
-                    t2.down()
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    # flecha de abajo
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 50)
-                    t2.right(180)
-                    t2.down()
-                    t2.forward(30)
-                    #texto en el centro
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 70)
-                    t2.down()
-                    t2.write('q', align="center", font=('Arial', 16, 'normal'))
-                    t2.hideturtle()
-                    time.sleep(1)
+                    cabezal(t2, posicionCadena)
 
                     #Cambio de simbolo
                     t4.up()
@@ -504,34 +372,7 @@ def revision(cadena):
 
                 elif cadena[posicionCadena] == 'X' and estado == 4:
                     estado = 7
-                    #Graficacion en este punto del computo
-                    t2.clear()
-                    t2.reset()
-                    t2.speed(0)
-                    t2.speed(0)
-                    t2.up()
-                    t2.goto(posicionCadena * 50, 100)
-                    t2.down()
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    # flecha de abajo
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 50)
-                    t2.right(180)
-                    t2.down()
-                    t2.forward(30)
-                    #texto en el centro
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 70)
-                    t2.down()
-                    t2.write('q', align="center", font=('Arial', 16, 'normal'))
-                    t2.hideturtle()
-                    time.sleep(1)
+                    cabezal(t2, posicionCadena)
                     posicionCadena = posicionCadena + 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -555,34 +396,7 @@ def revision(cadena):
                 elif cadena[posicionCadena] == '_' and estado == 5:
                     estado = 6
                     cadena[posicionCadena] = '|'
-                    #Graficacion en este punto del computo
-                    t2.clear()
-                    t2.reset()
-                    t2.speed(0)
-                    t2.up()
-                    t2.goto(posicionCadena * 50, 100)
-                    t2.down()
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    # flecha de abajo
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 50)
-                    t2.right(180)
-                    t2.down()
-                    t2.forward(30)
-                    #texto en el centro
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 70)
-                    t2.down()
-                    t2.write('q', align="center", font=('Arial', 16, 'normal'))
-                    t2.hideturtle()
-                    time.sleep(1)
-
+                    cabezal(t2, posicionCadena)
                     #Cambio de simbolo
                     t4.up()
                     if posicionCadena == 0:
@@ -619,33 +433,7 @@ def revision(cadena):
                     continue
 
                 elif cadena[posicionCadena] == '*' and estado == 5:
-                    #Graficacion en este punto del computo
-                    t2.clear()
-                    t2.reset()
-                    t2.speed(0)
-                    t2.up()
-                    t2.goto(posicionCadena * 50, 100)
-                    t2.down()
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    # flecha de abajo
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 50)
-                    t2.right(180)
-                    t2.down()
-                    t2.forward(30)
-                    #texto en el centro
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 70)
-                    t2.down()
-                    t2.write('q', align="center", font=('Arial', 16, 'normal'))
-                    t2.hideturtle()
-                    time.sleep(1)
+                    cabezal(t2, posicionCadena)
                     posicionCadena = posicionCadena + 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -667,33 +455,7 @@ def revision(cadena):
                     continue
 
                 elif cadena[posicionCadena] == '|' and estado == 5:
-                    #Graficacion en este punto del computo
-                    t2.clear()
-                    t2.reset()
-                    t2.speed(0)
-                    t2.up()
-                    t2.goto(posicionCadena * 50, 100)
-                    t2.down()
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    # flecha de abajo
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 50)
-                    t2.right(180)
-                    t2.down()
-                    t2.forward(30)
-                    #texto en el centro
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 70)
-                    t2.down()
-                    t2.write('q', align="center", font=('Arial', 16, 'normal'))
-                    t2.hideturtle()
-                    time.sleep(1)
+                    cabezal(t2, posicionCadena)
                     posicionCadena = posicionCadena + 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -715,33 +477,7 @@ def revision(cadena):
                     continue
 
                 elif cadena[posicionCadena] == 'X' and estado == 5:
-                    #Graficacion en este punto del computo
-                    t2.clear()
-                    t2.reset()
-                    t2.speed(0)
-                    t2.up()
-                    t2.goto(posicionCadena * 50, 100)
-                    t2.down()
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    # flecha de abajo
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 50)
-                    t2.right(180)
-                    t2.down()
-                    t2.forward(30)
-                    #texto en el centro
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 70)
-                    t2.down()
-                    t2.write('q', align="center", font=('Arial', 16, 'normal'))
-                    t2.hideturtle()
-                    time.sleep(1)
+                    cabezal(t2, posicionCadena)
                     posicionCadena = posicionCadena + 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -764,33 +500,7 @@ def revision(cadena):
                     continue
 
                 elif cadena[posicionCadena] == '*' and estado == 6:
-                    #Graficacion en este punto del computo
-                    t2.clear()
-                    t2.reset()
-                    t2.speed(0)
-                    t2.up()
-                    t2.goto(posicionCadena * 50, 100)
-                    t2.down()
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    # flecha de abajo
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 50)
-                    t2.right(180)
-                    t2.down()
-                    t2.forward(30)
-                    #texto en el centro
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 70)
-                    t2.down()
-                    t2.write('q', align="center", font=('Arial', 16, 'normal'))
-                    t2.hideturtle()
-                    time.sleep(1)
+                    cabezal(t2, posicionCadena)
                     posicionCadena = posicionCadena - 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -812,33 +522,7 @@ def revision(cadena):
                     continue
 
                 elif cadena[posicionCadena] == '|' and estado == 6:
-                    #Graficacion en este punto del computo
-                    t2.clear()
-                    t2.reset()
-                    t2.speed(0)
-                    t2.up()
-                    t2.goto(posicionCadena * 50, 100)
-                    t2.down()
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    # flecha de abajo
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 50)
-                    t2.right(180)
-                    t2.down()
-                    t2.forward(30)
-                    #texto en el centro
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 70)
-                    t2.down()
-                    t2.write('q', align="center", font=('Arial', 16, 'normal'))
-                    t2.hideturtle()
-                    time.sleep(1)
+                    cabezal(t2, posicionCadena)
                     posicionCadena = posicionCadena - 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -862,34 +546,7 @@ def revision(cadena):
                 elif cadena[posicionCadena] == 'a' and estado == 6:
                     estado = 4
                     cadena[posicionCadena] = '|'
-                    #Graficacion en este punto del computo
-                    t2.clear()
-                    t2.reset()
-                    t2.speed(0)
-                    t2.up()
-                    t2.goto(posicionCadena * 50, 100)
-                    t2.down()
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    # flecha de abajo
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 50)
-                    t2.right(180)
-                    t2.down()
-                    t2.forward(30)
-                    #texto en el centro
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 70)
-                    t2.down()
-                    t2.write('q', align="center", font=('Arial', 16, 'normal'))
-                    t2.hideturtle()
-                    time.sleep(1)
-
+                    cabezal(t2, posicionCadena)
                     #Cambio de simbolo
                     t4.up()
                     if posicionCadena == 0:
@@ -926,33 +583,7 @@ def revision(cadena):
                     continue
 
                 elif cadena[posicionCadena] == 'X' and estado == 6:
-                    #Graficacion en este punto del computo
-                    t2.clear()
-                    t2.reset()
-                    t2.speed(0)
-                    t2.up()
-                    t2.goto(posicionCadena * 50, 100)
-                    t2.down()
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    # flecha de abajo
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 50)
-                    t2.right(180)
-                    t2.down()
-                    t2.forward(30)
-                    #texto en el centro
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 70)
-                    t2.down()
-                    t2.write('q', align="center", font=('Arial', 16, 'normal'))
-                    t2.hideturtle()
-                    time.sleep(1)
+                    cabezal(t2, posicionCadena)
                     posicionCadena = posicionCadena - 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -974,33 +605,7 @@ def revision(cadena):
                     continue
 
                 elif cadena[posicionCadena] == '*' and estado == 7:
-                    #Graficacion en este punto del computo
-                    t2.clear()
-                    t2.reset()
-                    t2.speed(0)
-                    t2.up()
-                    t2.goto(posicionCadena * 50, 100)
-                    t2.down()
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    # flecha de abajo
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 50)
-                    t2.right(180)
-                    t2.down()
-                    t2.forward(30)
-                    #texto en el centro
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 70)
-                    t2.down()
-                    t2.write('q', align="center", font=('Arial', 16, 'normal'))
-                    t2.hideturtle()
-                    time.sleep(1)
+                    cabezal(t2, posicionCadena)
                     posicionCadena = posicionCadena + 1
                     estado = 8
                     if posicionCadena > len(cadena) - 1:
@@ -1023,33 +628,7 @@ def revision(cadena):
                     continue
 
                 elif cadena[posicionCadena] == '|' and estado == 7:
-                    #Graficacion en este punto del computo
-                    t2.clear()
-                    t2.reset()
-                    t2.speed(0)
-                    t2.up()
-                    t2.goto(posicionCadena * 50, 100)
-                    t2.down()
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    # flecha de abajo
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 50)
-                    t2.right(180)
-                    t2.down()
-                    t2.forward(30)
-                    #texto en el centro
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 70)
-                    t2.down()
-                    t2.write('q', align="center", font=('Arial', 16, 'normal'))
-                    t2.hideturtle()
-                    time.sleep(1)
+                    cabezal(t2, posicionCadena)
                     posicionCadena = posicionCadena + 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -1072,34 +651,7 @@ def revision(cadena):
 
                 elif cadena[posicionCadena] == '_' and estado == 8:
                     cadena[posicionCadena] = '*'
-                    #Graficacion en este punto del computo
-                    t2.clear()
-                    t2.reset()
-                    t2.speed(0)
-                    t2.up()
-                    t2.goto(posicionCadena * 50, 100)
-                    t2.down()
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    # flecha de abajo
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 50)
-                    t2.right(180)
-                    t2.down()
-                    t2.forward(30)
-                    #texto en el centro
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 70)
-                    t2.down()
-                    t2.write('q', align="center", font=('Arial', 16, 'normal'))
-                    t2.hideturtle()
-                    time.sleep(1)
-                    
+                    cabezal(t2, posicionCadena)
                     #Cambio de simbolo
                     t4.up()
                     if posicionCadena == 0:
@@ -1137,33 +689,7 @@ def revision(cadena):
                     continue
 
                 elif cadena[posicionCadena] == '|' and estado == 8:
-                    #Graficacion en este punto del computo
-                    t2.clear()
-                    t2.reset()
-                    t2.speed(0)
-                    t2.up()
-                    t2.goto(posicionCadena * 50, 100)
-                    t2.down()
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    # flecha de abajo
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 50)
-                    t2.right(180)
-                    t2.down()
-                    t2.forward(30)
-                    #texto en el centro
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 70)
-                    t2.down()
-                    t2.write('q', align="center", font=('Arial', 16, 'normal'))
-                    t2.hideturtle()
-                    time.sleep(1)
+                    cabezal(t2, posicionCadena)
                     posicionCadena = posicionCadena + 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -1186,34 +712,7 @@ def revision(cadena):
 
                 elif cadena[posicionCadena] == 'X' and estado == 8:
                     cadena[posicionCadena] = '*'
-                    #Graficacion en este punto del computo
-                    t2.clear()
-                    t2.reset()
-                    t2.speed(0)
-                    t2.up()
-                    t2.goto(posicionCadena * 50, 100)
-                    t2.down()
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    # flecha de abajo
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 50)
-                    t2.right(180)
-                    t2.down()
-                    t2.forward(30)
-                    #texto en el centro
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 70)
-                    t2.down()
-                    t2.write('q', align="center", font=('Arial', 16, 'normal'))
-                    t2.hideturtle()
-                    time.sleep(1)
-                    
+                    cabezal(t2, posicionCadena)
                     #Cambio de simbolo
                     t4.up()
                     if posicionCadena == 0:
@@ -1249,33 +748,7 @@ def revision(cadena):
                     continue
 
                 elif cadena[posicionCadena] == '*' and estado == 9:
-                    #Graficacion en este punto del computo
-                    t2.clear()
-                    t2.reset()
-                    t2.speed(0)
-                    t2.up()
-                    t2.goto(posicionCadena * 50, 100)
-                    t2.down()
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    # flecha de abajo
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 50)
-                    t2.right(180)
-                    t2.down()
-                    t2.forward(30)
-                    #texto en el centro
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 70)
-                    t2.down()
-                    t2.write('q', align="center", font=('Arial', 16, 'normal'))
-                    t2.hideturtle()
-                    time.sleep(1)
+                    cabezal(t2, posicionCadena)
                     posicionCadena = posicionCadena - 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -1297,33 +770,7 @@ def revision(cadena):
                     continue
 
                 elif cadena[posicionCadena] == '|' and estado == 9:
-                    #Graficacion en este punto del computo
-                    t2.clear()
-                    t2.reset()
-                    t2.speed(0)
-                    t2.up()
-                    t2.goto(posicionCadena * 50, 100)
-                    t2.down()
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    # flecha de abajo
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 50)
-                    t2.right(180)
-                    t2.down()
-                    t2.forward(30)
-                    #texto en el centro
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 70)
-                    t2.down()
-                    t2.write('q', align="center", font=('Arial', 16, 'normal'))
-                    t2.hideturtle()
-                    time.sleep(1)
+                    cabezal(t2, posicionCadena)
                     posicionCadena = posicionCadena - 1
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
@@ -1373,34 +820,7 @@ def revision(cadena):
                     break
                 elif cadena[posicionCadena] == 'X' and estado == 9:
                     cadena[posicionCadena] = '*'
-                    #Graficacion en este punto del computo
-                    t2.clear()
-                    t2.reset()
-                    t2.speed(0)
-                    t2.up()
-                    t2.goto(posicionCadena * 50, 100)
-                    t2.down()
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    t2.right(90)
-                    t2.forward(50)
-                    # flecha de abajo
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 50)
-                    t2.right(180)
-                    t2.down()
-                    t2.forward(30)
-                    #texto en el centro
-                    t2.up()
-                    t2.goto(posicionCadena * 50 + 25, 70)
-                    t2.down()
-                    t2.write('q', align="center", font=('Arial', 16, 'normal'))
-                    t2.hideturtle()
-                    time.sleep(1)
-
+                    cabezal(t2, posicionCadena)
                     #Cambio de simbolo
                     t4.up()
                     if posicionCadena == 0:
@@ -1625,6 +1045,37 @@ def limpiar(x,y):
         t5.forward(25)
         t5.right(90)
     t5.end_fill()
+
+def cabezal(t2, posicionCadena):
+    #Graficacion en este punto del computo
+    t2.clear()
+    t2.reset()
+    t2.speed(0)
+    t2.up()
+    t2.speed(0)
+    t2.goto(posicionCadena * 50, 100)
+    t2.down()
+    t2.forward(50)
+    t2.right(90)
+    t2.forward(50)
+    t2.right(90)
+    t2.forward(50)
+    t2.right(90)
+    t2.forward(50)
+    # flecha de abajo
+    t2.up()
+    t2.goto(posicionCadena * 50 + 25, 50)
+    t2.right(180)
+    t2.down()
+    t2.forward(30)
+    #texto en el centro
+    t2.up()
+    t2.goto(posicionCadena * 50 + 25, 70)
+    t2.down()
+    t2.write('q', align="center", font=('Arial', 16, 'normal'))
+    t2.hideturtle()
+    time.sleep(1)
+    
 
 def maquina():
     print("Bienvenido a una prueba de la pedagogical universal Turing machine, que disfrute su estancia.")
