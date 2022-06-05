@@ -20,8 +20,6 @@ def automata():
     cadena = "" #Donde se guardará la cadena
     pila = ['z0'] #La pila del automata, inicializada con el ultimo elemento, para saber si se alcanzó el final de la pila
     a = open("Programa6_DescripcionesInstantaneas.txt", "w", encoding="utf-8")
-    counter = 0
-
     print("Bienvenidx al automata de pila")
     print("El lenguaje del automata es {0^n 1^n | n >= 1}")
     #Se manda a generar la cadena con restricciones para poder operarla aquí
@@ -72,7 +70,6 @@ def automata():
             t2.hideturtle()
             t3.hideturtle()
             for index, i in enumerate(cadena): 
-                counter = counter + 1
                 if i == '0':
                     pila.append('0')
                     print(f"<q2, {cadena[index:-1]}, {pila[::-1]}>")
@@ -154,8 +151,7 @@ def automata():
             a.close()
             turtle.exitonclick()
         else: 
-            for index, i in enumerate(cadena): 
-                counter = counter + 1
+            for index, i in enumerate(cadena):
                 if i == '0':
                     pila.append('0')
                     print(f"<q2, {cadena[index:-1]}, {pila[::-1]}>")

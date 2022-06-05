@@ -232,7 +232,6 @@ def revision(cadena):
                     cabezal(t2, posicionCadena)
                     a.write(f"{cadena[:posicionCadena], estado, cadena[posicionCadena:]}|-\n")
                     posicionCadena = posicionCadena + 1
-                    a.write(f"{cadena[:posicionCadena]}{estado}{cadena[posicionCadena:]}|-")
                     if posicionCadena > len(cadena) - 1:
                         cadena.append("_")
                         t3.up()
