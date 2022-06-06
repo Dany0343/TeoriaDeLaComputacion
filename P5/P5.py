@@ -22,7 +22,7 @@ tablaEstados = {
         'p' : {'B': 'ol', 'R': 'k'}
 }
 
-def cadenaRandom(numero): #Genera un string de forma random donde es 
+def cadenaRandom(numero): #Genera un string de forma random 
     auxiliar = "" #Variable auxiliar
     for i in range(numero):
         x = random.choice([1, 2]) #Función para generar un resultado random de una lista
