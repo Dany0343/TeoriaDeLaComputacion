@@ -2,8 +2,7 @@ import random
 from time import sleep
 import pygame
 
-# A dictionary that contains the possible states that the knight can go to, depending on the current
-# state and the instruction.
+#Tabla de estados que contiene los posibles resultados
 tablaEstados = {
         'a' : {'B': 'be', 'R': 'f'},
         'b' : {'B': 'eg', 'R': 'acf'},
@@ -180,7 +179,7 @@ def juego():
                 pygame.display.init()
                 
                 #colores               
-                negro = (155,155,155)  
+                negro = (28,27,23)  
                 rojo = (255,0,0)
                 #set display
                 gameDisplay = pygame.display.set_mode((600,600))
