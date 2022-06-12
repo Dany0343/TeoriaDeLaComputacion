@@ -25,8 +25,8 @@ tablaEstados = {
 def cadenaRandom(numero): #Genera un string de forma random 
     auxiliar = "" #Variable auxiliar
     for i in range(numero):
-        x = random.choice([1, 2]) #Función para generar un resultado random de una lista
-        if x == 2:
+        x = random.randint(1, 2) #Función para generar un resultado random de una lista
+        if x % 2 == 0:
             auxiliar = auxiliar + "R"
         else:
             auxiliar = auxiliar + "B"
@@ -90,7 +90,7 @@ class ficha(): #Clase ficha donde cada moneda obtendrá estas propiedades
             rutaL.append(tablaCoordenadas.get(i)) #Retorna el valor especificado del diccionario
         self.route = rutaL
 
-def recalcularRutas(ruta1, ruta2, intento, inicio):
+def recalcularRutas(ruta1:list, ruta2:list, intento:int, inicio:int):
     try: #Se utiliza un try catch para poder revisar el ciclo for y con la excepcion de un indexerror el cual devuelve false y las dos rutas
         for i in range( len(ruta1) ):
             if(ruta1[i]==ruta2[i]):
@@ -102,166 +102,162 @@ def recalcularRutas(ruta1, ruta2, intento, inicio):
                     return False, ruta1, ruta2
                 else:
                     return True, ruta1, ruta2
-            
         return False, ruta1, ruta2
     except IndexError:
         return False, ruta1, ruta2
 
 def juego():
     while True:
-        try:
-            eleccion = input("1.Modo automatico\n2.Modo manual \n")
-            if eleccion == "1":
-                jugadores = random.choice([1, 2])
-                ruta = cadenaRandom(random.randint(1,10)) #Se genera de forma aleatoria del 1-10
-            elif eleccion == "2":    
-                jugadores = int(input("Numero de jugadores\n1 o 2: \n"))
-                if jugadores < 1:
-                    print(f"No se puede tener un numero de jugadores de {jugadores}")
-                    break
-                elif jugadores > 2:
-                    print("No se pueden tener más de 2 jugadores")
-                    break
-                ruta = input("Ingrese la cadena usando R y B\n1. Para generarla de forma aleatoria \n").upper()
-                if ruta == "1":
-                    ruta = cadenaRandom(random.randint(1,10)) #Se genera de forma aleatoria del 1-10
-            
-                if len(ruta) >= 100:
-                    print("No es posible introducir más de 100 caracteres")
-                    break
-            else:
-                print("Elija un numero correcto")
+        eleccion = input("1.Modo automatico\n2.Modo manual \n")
+        if eleccion == "1":
+            jugadores = random.choice([1, 2])
+            ruta = cadenaRandom(random.randint(1,10)) #Se genera de forma aleatoria del 1-10
+
+        elif eleccion == "2":    
+            jugadores = int(input("Numero de jugadores\n1 o 2: \n"))
+            if jugadores < 1:
+                print(f"No se puede tener un numero de jugadores de {jugadores}")
                 break
-            print(f"La ruta a evaluar es: {ruta}")
+            elif jugadores > 2:
+                print("No se pueden tener más de 2 jugadores")
+                break
+            ruta = input("Ingrese la cadena usando R y B\n1. Para generarla de forma aleatoria \n").upper()
             
-            #Calculo de las rutas de ambos jugadores
-            print("Calculando rutas del primer jugador")
-            ajedrez(ruta, 'a')
-            ruta1 = mejRutas("Practica5Rutasa.txt", 'a') #Se le manda un archivo de texto de las rutas 1 y el parametro p  
-            j1ficha = ficha('P5/p5j1.png')
-            j1 = pygame.image.load(j1ficha.image)
-            j1 = pygame.transform.scale(j1, [50,50])
-            
-            #Para 2 jugadores
-            if jugadores == 2: 
-                print("Calculando rutas del segundo jugador")
-                ajedrez(ruta, 'b')
-                ruta2 = mejRutas("Practica5Rutasb.txt", 'b')
-                j2ficha = ficha('P5/p5j2.png')
-                j2 = pygame.image.load(j2ficha.image)
-                j2 = pygame.transform.scale(j2, [50,50])
-            
-            #Salidas
-            try:
-                if jugadores == 2:
-                    inicio = random.choice([1, 2])
-                    print(f"Inicio: {str(inicio)}")
-                    aceptado = recalcularRutas(list(ruta1[0]), list(ruta2[0]), 1, inicio) #Convierte en lista el primer elemento de la ruta 1 y ruta 2
-                    rutafinal1 = recalcularRutas(list(ruta1[0]), list(ruta2[0]), 1, inicio)
-                    rutafinal2 = recalcularRutas(list(ruta1[0]), list(ruta2[0]), 1, inicio)
+            if ruta == "0":
+                ruta = cadenaRandom(random.randint(1,10)) #Se genera de forma aleatoria del 1-10
+        
+            if len(ruta) >= 100:
+                print("No es posible introducir más de 100 caracteres")
+                break
+        else:
+            print("Elija un numero correcto")
+            break
 
-                    if(aceptado): #Si el valor de aceptado es True entra en el if
-                        if (inicio == 1):
-                            aceptado = recalcularRutas(list(ruta1[0]), list(ruta2[1]), 1, inicio) #Convierte en lista el primer elemento de la ruta 1 y ruta 2
-                            rutafinal1 = recalcularRutas(list(ruta1[0]), list(ruta2[1]), 1, inicio)
-                            rutafinal2 = recalcularRutas(list(ruta1[0]), list(ruta2[1]), 1, inicio)
-                        else:
-                            aceptado = recalcularRutas(list(ruta1[1]), list(ruta2[0]), 2, inicio) #Convierte en lista el primer elemento de la ruta 1 y ruta 2
-                            rutafinal1 = recalcularRutas(list(ruta1[1]), list(ruta2[0]), 2, inicio)
-                            rutafinal2 = recalcularRutas(list(ruta1[1]), list(ruta2[0]), 2, inicio)
-                    rf1 = ''.join(rutafinal1)
-                    rf2 = ''.join(rutafinal2)
-                    print(rf1)
-                    print(rf2)
-                else:
-                    rf1 = ruta1[0]
-                    print(rf1)
-                pygame.display.init()
-                
-                #colores               
-                negro = (28,27,23)  
-                rojo = (255,0,0)
-                #set display
-                gameDisplay = pygame.display.set_mode((600,600))
-                pygame.display.set_caption("ajedrez")
-                
-                #Cuadros
-                tcuadros = 100
-
-                longitudA = 4
-                gameDisplay.fill('white')
-                counter = 0
-                #Se dibuja la cuadricula y se pinta
-                for i in range(1,longitudA + 1):
-                    for j in range(1,longitudA + 1):
-                    #revisa si es par
-                        if counter % 2 == 0:
-                            pygame.draw.rect(gameDisplay, negro,[tcuadros*j, tcuadros*i,tcuadros,tcuadros])
-                        else:
-                            pygame.draw.rect(gameDisplay, rojo, [tcuadros*j,tcuadros*i,tcuadros,tcuadros])
-                        counter = counter + 1
-                        #since theres an even number of squares go back one value
-                    counter = counter -1
-
-                pygame.draw.rect(gameDisplay,negro,[tcuadros,tcuadros,longitudA*tcuadros,longitudA*tcuadros],1)
-                gameDisplay.blit(j1,[tcuadros,tcuadros])
-                j1ficha.convertidor(rf1, tcuadros)
-                
-                if jugadores == 2 :
-                    gameDisplay.blit(j2,[4 * tcuadros, tcuadros])
-                    j2ficha.convertidor(rf2, tcuadros)
-
-                #Muestra a los jugadores en la cuadricula
-                pygame.display.update()
-                
-                if jugadores == 2:
-                    if len(j1ficha.route) > len(j2ficha.route):
-                        movimientos = len(j2ficha.route)
+        print(f"La ruta a evaluar es: {ruta}")
+        
+        #Calculo de las rutas de ambos jugadores
+        print("Calculando rutas del primer jugador")
+        ajedrez(ruta, 'a')
+        ruta1 = mejRutas("Practica5Rutasa.txt", 'p') #Se le manda un archivo de texto de las rutas 1 y el parametro a
+        j1ficha = ficha('P5/p5j1.png')
+        j1 = pygame.image.load(j1ficha.image)
+        j1 = pygame.transform.scale(j1, [50,50])
+        
+        #Para 2 jugadores
+        if jugadores >= 2: 
+            print("Calculando rutas del segundo jugador")
+            ajedrez(ruta, 'd')
+            ruta2 = mejRutas("Practica5Rutasd.txt", 'm')
+            j2ficha = ficha('P5/p5j2.png')
+            j2 = pygame.image.load(j2ficha.image)
+            j2 = pygame.transform.scale(j2, [50,50])
+        
+        #Salidas
+        try:
+            if jugadores >= 2:
+                inicio = random.choice([1, 2])
+                print(f"Inicio: {str(inicio)}")
+                #Convierte en lista el primer elemento de la ruta 1 y ruta 2
+                aceptado, rutafinal1, rutafinal2 = recalcularRutas(list(ruta1[0]), list(ruta2[0]), 1, inicio)
+                if aceptado: #Si el valor de aceptado es True entra en el if
+                    if inicio == 1:
+                        #Convierte en lista el primer elemento de la ruta 1 y ruta 2
+                        aceptado, rutafinal1, rutafinal2 = recalcularRutas(list(ruta1[0]), list(ruta2[0]), 2, inicio)
                     else:
-                        movimientos = len(j1ficha.route)
-                    try:
-                        if(inicio == 1):
-                            for i in range(movimientos):
-                                gameDisplay.blit(j1,list(j1ficha.route[i]))
-                                pygame.display.update()
-                                sleep(3)
-                                gameDisplay.blit(j2,list(j2ficha.route[i]))
-                                pygame.display.update()
-                                sleep(3)
-                        else:
-                            for i in range(movimientos):
-                                gameDisplay.blit(j2,list(j2ficha.route[i]))
-                                pygame.display.update()
-                                sleep(3)
-                                gameDisplay.blit(j1,list(j1ficha.route[i]))
-                                pygame.display.update()
-                                sleep(3) 
-                        print("La partida ha terminado")
-                        sleep(3)
-                        pygame.display.quit()
-                    except IndexError:
-                        print("La partida ha terminado")
-                        sleep(3)
-                        pygame.display.quit()
+                        #Convierte en lista el primer elemento de la ruta 1 y ruta 2
+                        aceptado, rutafinal1, rutafinal2 = recalcularRutas(list(ruta1[1]), list(ruta2[0]), 2, inicio)
+                rf1 = ''.join(rutafinal1)
+                rf2 = ''.join(rutafinal2)
+                # print(rf1)
+                # print(rf2)
+            else:
+                rf1 = ruta1[0]
+                # print(rf1)
+            pygame.display.init()
+            
+            #colores               
+            negro = (28,27,23)  
+            rojo = (255,0,0)
+            #set display
+            gameDisplay = pygame.display.set_mode((600,600))
+            pygame.display.set_caption("Ajedrez")
+            
+            #Cuadros
+            tcuadros = 100
+
+            longitudA = 4
+            gameDisplay.fill('white')
+            counter = 0
+            #Se dibuja la cuadricula y se pinta
+            for i in range(1,longitudA + 1):
+                for j in range(1,longitudA + 1):
+                #revisa si es par
+                    if counter % 2 == 0:
+                        pygame.draw.rect(gameDisplay, negro,[tcuadros*j, tcuadros*i,tcuadros,tcuadros])
+                    else:
+                        pygame.draw.rect(gameDisplay, rojo, [tcuadros*j,tcuadros*i,tcuadros,tcuadros])
+                    counter = counter + 1
+
+                counter = counter -1
+
+            pygame.draw.rect(gameDisplay,negro,[tcuadros,tcuadros,longitudA*tcuadros,longitudA*tcuadros],1)
+            gameDisplay.blit(j1,[tcuadros,tcuadros])
+            j1ficha.convertidor(rf1, tcuadros)
+            
+            if jugadores >= 2 :
+                gameDisplay.blit(j2,[4 * tcuadros, tcuadros])
+                j2ficha.convertidor(rf2, tcuadros)
+
+            #Muestra a los jugadores en la cuadricula
+            pygame.display.update()
+            
+            if jugadores >= 2:
+                if len(j1ficha.route) > len(j2ficha.route):
+                    movimientos = len(j2ficha.route)
                 else:
-                    for i in j1ficha.route:
-                        gameDisplay.blit(j1,list(i))
-                        pygame.display.update()
-                        sleep(3)
+                    movimientos = len(j1ficha.route)
+                try:
+                    if inicio == 1:
+                        for i in range(movimientos):
+                            gameDisplay.blit(j1,list(j1ficha.route[i]))
+                            pygame.display.update()
+                            sleep(3)
+                            gameDisplay.blit(j2,list(j2ficha.route[i]))
+                            pygame.display.update()
+                            sleep(3)
+                    else:
+                        for i in range(movimientos):
+                            gameDisplay.blit(j2,list(j2ficha.route[i]))
+                            pygame.display.update()
+                            sleep(3)
+                            gameDisplay.blit(j1,list(j1ficha.route[i]))
+                            pygame.display.update()
+                            sleep(3) 
                     print("La partida ha terminado")
-                    sleep(3)
+                    sleep(10)
                     pygame.display.quit()
-            
-            except IndexError:
-                print("No hay rutas ganadoras")
-            
-            opc = int(input("1.Salir\n2.Volver a empezar\n"))
-            if opc != 2:
-                print("Hasta pronto!")
+                except IndexError:
+                    print("La partida ha terminado")
+                    sleep(10)
+                    pygame.display.quit()
+            else:
+                for i in j1ficha.route:
+                    gameDisplay.blit(j1,list(i))
+                    pygame.display.update()
+                    sleep(3)
+                print("La partida ha terminado")
+                sleep(10)
                 pygame.display.quit()
-                quit() #Se sale completamente de python
-        except KeyError:
-            print("La cadena tiene caracteres no validos, favor de revisar")
+        
+        except IndexError:
+            print("No hay rutas ganadoras")
+        
+        opc = int(input("1.Salir\n2.Volver a empezar\n"))
+        if opc != 2:
+            print("Hasta pronto!")
+            pygame.display.quit()
+            break
+            quit() #Se sale completamente de python
 #Entry point del programa
 if __name__ == "__main__":
     juego()
