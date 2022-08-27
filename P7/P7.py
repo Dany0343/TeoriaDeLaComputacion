@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#Librerias
+# Librerias
 from datetime import timedelta
 from enum import auto
 import random
@@ -7,6 +7,15 @@ from random import randint
 import string
 import time
 import turtle
+
+# Esta maquina de turing está basada en la máquina de la tabla 1 del siguiente paper (página 2).
+# Paper: https://arxiv.org/abs/2110.08511
+
+# Instrucciones de desarrollo dadas por el Doctor Genaro Juarez de la Escuela Superior de Computo del Instituto Politécnico Nacional en la materia de Teoría de la Computación
+
+# Un input de entrada podría ser: "*|*|*". Funciona para cualquier m y n que se sumarán y entregarán un resultado en modo gráfico
+
+# Autor: Oscar Bucio
 
 # 1. La máquina se tiene que animar para cadenas pequeñas (menor igual a 10 caracteres).
 # 2. Puede recibir la cadena por parte del usuario o aleatoriamente con un máximo de 50 caracteres.
