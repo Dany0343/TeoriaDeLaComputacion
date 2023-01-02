@@ -1,4 +1,4 @@
-# Practicas Teoría de la Computación - ESCOM IPN - Genaro Martínez
+# Practicas Teoría de la Computación - ESCOM IPN - Genaro Juarez
 
 Este código es completamente **open source**, siéntete libre de tomar lo que quieras y modificarlo a tu gusto.
 
@@ -11,6 +11,7 @@ Este código es completamente **open source**, siéntete libre de tomar lo que q
   - Numpy
   - visual-automata
   - pygame
+  - turtle
   - Y demás que no recuerdo pero están hasta arriba de cada archivo y tú editor te marcará error si no las tienes.
 - Te recomiendo bastante el crear un entorno virtual para poder instalar todo y que los códigos corran en un ambiente "cerrado" y de igual forma te recomiendo utilizar Linux, en mi caso utilicé WSL, igual por lo mismo de las librerías.
 - Se que el semestre con el profe podría llegar a parecer desafiante y te podrían dar ganas de darla de baja, pero con dedicación lo puedes lograr y te aseguro que aprenderás demasiado durante el semestre (con el profe y por tu cuenta). No desistas y te deseo muchisimo exito en tu semestre!
