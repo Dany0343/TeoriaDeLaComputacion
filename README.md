@@ -5,7 +5,13 @@ Este código es completamente **open source**, siéntete libre de tomar lo que q
 
 # Unas cuantas consideraciones
 - Puede que todos los códigos estén plagados de malas prácticas xD era mi primera vez utilizando Python así que hay muchas cosas que, o no deberían de estar o están de más y sería bueno meterlas dentro de una función
-- Algunas librerías se han actualizado por lo que pueden existir algunas incompatibilidades, por ejemplo en la práctica número 4 con la librería visual automata
+- Algunas librerías se han actualizado por lo que pueden existir algunas incompatibilidades, por ejemplo en la práctica número 4 con la librería visual automata.
+  Mas o menos una lista de las librerias que utilicé son:
+  - Matplotlib
+  - Numpy
+  - visual-automata
+  - pygame
+  - Y demás que no recuerdo pero están hasta arriba de cada archivo y tú editor te marcará error si no las tienes.
 - Te recomiendo bastante el crear un entorno virtual para poder instalar todo y que los códigos corran en un ambiente "cerrado" y de igual forma te recomiendo utilizar Linux, en mi caso utilicé WSL, igual por lo mismo de las librerías.
 - Se que el semestre con el profe podría llegar a parecer desafiante y te podrían dar ganas de darla de baja, pero con dedicación lo puedes lograr y te aseguro que aprenderás demasiado durante el semestre (con el profe y por tu cuenta). No desistas y te deseo muchisimo exito en tu semestre!
 
