@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 #Variables
+# Teoría de la Computación - ESCOM IPN - Genaro Juarez
+
 from random import randint
 from timeit import default_timer
 import matplotlib.pyplot as plt
