@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+# Teoría de la Computación - ESCOM IPN - Genaro Juarez
+
 import random
 from random import randint
 import time
