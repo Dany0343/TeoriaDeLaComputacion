@@ -1,3 +1,5 @@
+# Teoría de la Computación - ESCOM IPN - Genaro Juarez
+# Este programa tiene varios errores pero una idea si te das XD
 import random
 from time import sleep
 import pygame
