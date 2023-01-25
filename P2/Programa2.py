@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Teoría de la Computación - ESCOM IPN - Genaro Juarez
 from random import randint
 import matplotlib.pyplot as plt
 from timeit import default_timer
