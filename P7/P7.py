@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Teoría de la Computación - ESCOM IPN - Genaro Juarez
 # Librerias
 from datetime import timedelta
 from enum import auto
